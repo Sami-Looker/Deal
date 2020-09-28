@@ -427,6 +427,11 @@ view: deal {
     ;;
   }
 
+#Homework:
+# 1. Finish macro_status definition
+# 2. Add counts for other macro_status
+# 3. Build funnel visualization
+
 # 1 Pagamento recusado - SQL
 # 2 Dados dos beneficiários - SQL
 # 3 Qualificação - SQL
