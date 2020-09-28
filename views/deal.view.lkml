@@ -452,7 +452,7 @@ view: deal {
   }
 
   measure: count_cotacao {
-    label: "(2) Count SQL"
+    label: "(2) Count Cotação"
     group_label: "Funnel Counts"
     type: count
     filters: [macro_status: "Cotação"]
