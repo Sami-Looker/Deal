@@ -1,7 +1,10 @@
+# All fields are hidden - no fields are needed for explores
+
 view: deal_company {
   sql_table_name: hubspot.deal_company ;;
 
   dimension_group: _fivetran_synced {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -16,16 +19,19 @@ view: deal_company {
   }
 
   dimension: company_id {
+    hidden: yes
     type: number
     sql: ${TABLE}."company_id" ;;
   }
 
   dimension: deal_id {
+    hidden: yes
     type: number
     sql: ${TABLE}."deal_id" ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }

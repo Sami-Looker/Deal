@@ -3,17 +3,20 @@ view: contact {
   drill_fields: [id]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}."id" ;;
   }
 
   dimension: _fivetran_deleted {
+    hidden: yes
     type: yesno
     sql: ${TABLE}."_fivetran_deleted" ;;
   }
 
   dimension_group: _fivetran_synced {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -54,6 +57,7 @@ view: contact {
   }
 
   dimension: property_associatedcompanyid {
+    hidden: yes
     type: number
     value_format_name: id
     sql: ${TABLE}."property_associatedcompanyid" ;;

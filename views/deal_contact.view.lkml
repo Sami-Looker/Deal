@@ -1,3 +1,5 @@
+# All fields are hidden - no fields are needed for explores
+
 view: deal_contact {
   sql_table_name: hubspot.deal_contact ;;
 
