@@ -25,6 +25,7 @@ view: company {
   }
 
   dimension: is_deleted {
+    hidden: yes
     type: yesno
     sql: ${TABLE}."is_deleted" ;;
   }
@@ -35,24 +36,28 @@ view: company {
     sql: ${TABLE}."portal_id" ;;
   }
 
-  dimension: address {
+  dimension: Address {
     group_label: "Location"
     type: string
     sql: ${TABLE}."property_address" ;;
   }
 
-  dimension: annualrevenue {
+  dimension: Annualrevenue {
+    hidden: yes
+    label: "Annual Revenue"
     type: number
     sql: ${TABLE}."property_annualrevenue" ;;
   }
 
-  dimension: city {
+  dimension: City {
     group_label: "Location"
     type: string
     sql: ${TABLE}."property_city" ;;
   }
 
   dimension_group: property_closedate {
+    hidden: yes
+    label: "Close Date"
     type: time
     timeframes: [
       raw,
@@ -66,13 +71,15 @@ view: company {
     sql: ${TABLE}."property_closedate" ;;
   }
 
-  dimension: country {
+  dimension: Country {
     group_label: "Location"
     type: string
     sql: ${TABLE}."property_country" ;;
   }
 
   dimension_group: property_createdate {
+    hidden: yes
+    label: "Create Date"
     type: time
     timeframes: [
       raw,
@@ -87,6 +94,7 @@ view: company {
   }
 
   dimension: days_to_close {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_days_to_close" ;;
   }
@@ -97,16 +105,19 @@ view: company {
   }
 
   dimension: domain {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_domain" ;;
   }
 
   dimension: facebook_company_page {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_facebook_company_page" ;;
   }
 
   dimension_group: first_contact_createdate {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -121,6 +132,7 @@ view: company {
   }
 
   dimension_group: first_conversion {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -135,11 +147,13 @@ view: company {
   }
 
   dimension: first_conversion_event_name {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_first_conversion_event_name" ;;
   }
 
   dimension_group: first_deal_created {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -154,6 +168,7 @@ view: company {
   }
 
   dimension: founded_year {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_founded_year" ;;
   }
@@ -180,6 +195,7 @@ view: company {
   }
 
   dimension_group: hs_analytics_first_timestamp {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -194,6 +210,7 @@ view: company {
   }
 
   dimension_group: hs_analytics_first_visit_timestamp {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -208,6 +225,7 @@ view: company {
   }
 
   dimension_group: hs_analytics_last_timestamp {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -222,11 +240,13 @@ view: company {
   }
 
   dimension: hs_analytics_last_touch_converting_campaign {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_hs_analytics_last_touch_converting_campaign" ;;
   }
 
   dimension_group: hs_analytics_last_visit_timestamp {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -241,26 +261,31 @@ view: company {
   }
 
   dimension: hs_analytics_num_page_views {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_analytics_num_page_views" ;;
   }
 
   dimension: hs_analytics_num_visits {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_analytics_num_visits" ;;
   }
 
   dimension: hs_analytics_source {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_hs_analytics_source" ;;
   }
 
   dimension: hs_analytics_source_data_1 {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_hs_analytics_source_data_1" ;;
   }
 
   dimension: hs_analytics_source_data_2 {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_hs_analytics_source_data_2" ;;
   }
@@ -272,11 +297,13 @@ view: company {
   }
 
   dimension: hs_is_target_account {
+    hidden: yes
     type: yesno
     sql: ${TABLE}."property_hs_is_target_account" ;;
   }
 
   dimension_group: hs_last_sales_activity {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -291,6 +318,7 @@ view: company {
   }
 
   dimension_group: hs_last_sales_activity_timestamp {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -305,6 +333,7 @@ view: company {
   }
 
   dimension_group: hs_lastmodifieddate {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -319,36 +348,43 @@ view: company {
   }
 
   dimension: hs_num_blockers {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_num_blockers" ;;
   }
 
   dimension: hs_num_child_companies {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_num_child_companies" ;;
   }
 
   dimension: hs_num_contacts_with_buying_roles {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_num_contacts_with_buying_roles" ;;
   }
 
   dimension: hs_num_decision_makers {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_num_decision_makers" ;;
   }
 
   dimension: hs_num_open_deals {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_num_open_deals" ;;
   }
 
   dimension: hs_predictivecontactscore_v_2 {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_predictivecontactscore_v_2" ;;
   }
 
   dimension_group: property_hs_sales_email_last_replied {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -363,11 +399,13 @@ view: company {
   }
 
   dimension: hs_target_account_probability {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_target_account_probability" ;;
   }
 
   dimension: hs_total_deal_value {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_total_deal_value" ;;
   }
@@ -386,6 +424,7 @@ view: company {
   }
 
   dimension_group: property_hubspot_owner_assigneddate {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -417,21 +456,25 @@ view: company {
   }
 
   dimension: is_public {
+    hidden: yes
     type: yesno
     sql: ${TABLE}."property_is_public" ;;
   }
 
   dimension: lifecyclestage {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_lifecyclestage" ;;
   }
 
   dimension: linkedin_company_page {
+    label: "LinkedIN"
     type: string
     sql: ${TABLE}."property_linkedin_company_page" ;;
   }
 
   dimension: linkedinbio {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_linkedinbio" ;;
   }
@@ -442,11 +485,13 @@ view: company {
   }
 
   dimension: no_do_cnpj {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_no_do_cnpj" ;;
   }
 
   dimension_group: notes_last_contacted {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -461,6 +506,7 @@ view: company {
   }
 
   dimension_group: notes_last_updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -475,26 +521,31 @@ view: company {
   }
 
   dimension: num_associated_contacts {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_num_associated_contacts" ;;
   }
 
   dimension: num_associated_deals {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_num_associated_deals" ;;
   }
 
   dimension: num_contacted_notes {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_num_contacted_notes" ;;
   }
 
   dimension: num_conversion_events {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_num_conversion_events" ;;
   }
 
   dimension: num_notes {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_num_notes" ;;
   }
@@ -505,11 +556,13 @@ view: company {
   }
 
   dimension: phone {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_phone" ;;
   }
 
   dimension_group: recent_conversion {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -524,11 +577,13 @@ view: company {
   }
 
   dimension: recent_conversion_event_name {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_recent_conversion_event_name" ;;
   }
 
   dimension_group: recent_deal_close {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -555,21 +610,19 @@ view: company {
   }
 
   dimension: total_money_raised {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_total_money_raised" ;;
   }
 
   dimension: twitterhandle {
+    label: "Twitter"
     type: string
     sql: ${TABLE}."property_twitterhandle" ;;
   }
 
-  dimension: type {
-    type: string
-    sql: ${TABLE}."property_type" ;;
-  }
-
   dimension: web_technologies {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_web_technologies" ;;
   }
@@ -583,14 +636,5 @@ view: company {
     group_label: "Location"
     type: string
     sql: ${TABLE}."property_zip" ;;
-  }
-
-  measure: count {
-    type: count
-    drill_fields: [std_drill*]
-  }
-
-  set: std_drill {
-    fields: [name, first_conversion_event_name, recent_conversion_event_name]
   }
 }

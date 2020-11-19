@@ -2,6 +2,7 @@ view: company_property_history {
   sql_table_name: hubspot.company_property_history ;;
 
   dimension_group: _fivetran_synced {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -16,26 +17,31 @@ view: company_property_history {
   }
 
   dimension: company_id {
+    hidden: yes
     type: number
     sql: ${TABLE}."company_id" ;;
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}."name" ;;
   }
 
   dimension: source {
+    hidden: yes
     type: string
     sql: ${TABLE}."source" ;;
   }
 
   dimension: source_id {
+    hidden: yes
     type: string
     sql: ${TABLE}."source_id" ;;
   }
 
   dimension_group: timestamp {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -50,11 +56,13 @@ view: company_property_history {
   }
 
   dimension: value {
+    hidden: yes
     type: string
     sql: ${TABLE}."value" ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [name]
   }

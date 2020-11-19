@@ -1,6 +1,3 @@
-# All the dimensions in this view are hidden
-# Only need the label, which is referenced on deal
-
 view: deal_pipeline_stage {
   sql_table_name: hubspot.deal_pipeline_stage ;;
 
@@ -63,8 +60,8 @@ view: deal_pipeline_stage {
 
   dimension: stage_id {
     hidden: yes
-    type: number
-    sql: CAST(${TABLE}."stage_id" AS BIGINT) ;;
+    type: string
+    sql: ${TABLE}."stage_id" ;;
   }
 
   measure: count {

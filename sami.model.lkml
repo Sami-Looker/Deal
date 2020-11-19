@@ -1,36 +1,20 @@
 connection: "sami_dw"
 
-include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
-# include: "/**/view.lkml"                   # include all views in this project
-# include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
+include: "/views/**/*.view"
 
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-# }
 
-explore: deal_property_history {}
-explore: time_in_deal_stage_history {}
-explore: deal_stage_facts {}
+explore: beneficiaries {
+  label: "Benf"
+
+  join: companies {
+    type: left_outer
+    sql_on: ${beneficiaries.companyid}} = ${companies._id} ;;
+    relationship: many_to_one
+  }
+}
 
 explore: deal {
   label: "Deals"
-
-  join: deal_pipeline_stage {
-    type: left_outer
-    sql_on: ${deal.deal_pipeline_stage_id} = ${deal_pipeline_stage.stage_id} ;;
-    relationship: one_to_one
-  }
 
   join: deal_company {
     # view_label: "Company"
@@ -43,6 +27,18 @@ explore: deal {
     # view_label: "Company"
     type: left_outer
     sql_on: ${deal_company.company_id} = ${company.id} ;;
+    relationship: one_to_one
+  }
+
+  join: beneficiaries {
+    type: left_outer
+    sql_on: ${beneficiaries.companyid}} = ${companies._id} ;;
+    relationship: many_to_one
+  }
+
+  join: companies {
+    type: left_outer
+    sql_on: ${deal.property_no_do_cnpj} = ${companies.cnpj} ;;
     relationship: one_to_one
   }
 
@@ -67,6 +63,13 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: deal_pipeline_stage {
+    view_label: "Deal Stage"
+    type: left_outer
+    sql_on: ${deal.deal_pipeline_stage_id} = ${deal_pipeline_stage.stage_id} ;;
+    relationship: one_to_one
+  }
+
   join: contact_property_history {
     view_label: "Contact History"
     type: left_outer
@@ -74,12 +77,12 @@ explore: deal {
     relationship: one_to_one
   }
 
-  # join: company_property_history {
-  #   view_label: "Company History"
-  #   type: left_outer
-  #   sql_on: ${company_property_history.company_id} = ${company.id} ;;
-  #   relationship: one_to_one
-  # }
+  join: company_property_history {
+    view_label: "Company History"
+    type: left_outer
+    sql_on: ${company_property_history.company_id} = ${company.id} ;;
+    relationship: one_to_one
+  }
 
   join: deal_property_history {
     view_label: "Deal History"
@@ -88,10 +91,10 @@ explore: deal {
     relationship: one_to_one
   }
 
-  join: deal_stage_facts {
-    view_label: "Deal Stage Facts"
+  join: time_in_stage_history {
+    view_label: "Time Deal History"
     type: left_outer
-    sql_on: ${deal.deal_id} = ${deal_stage_facts.deal_id} ;;
+    sql_on: ${deal.deal_id} = ${time_in_stage_history.deal_id} ;;
     relationship: one_to_one
   }
 }

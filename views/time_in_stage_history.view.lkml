@@ -1,6 +1,6 @@
 include: "/base_views/deal_base.view"
 
-view: time_in_deal_stage_history {
+view: time_in_stage_history {
   extends: [deal_base]
   derived_table: {
     indexes: ["deal_id"]
@@ -16,7 +16,7 @@ view: time_in_deal_stage_history {
       WHERE dph.name = 'deal_pipeline_stage_id'
       ORDER BY dph.deal_id
     ;;
-    persist_for: "24 hours"
+    persist_for: "24 hour"
   }
 
   # S1->S2 T1
@@ -33,7 +33,7 @@ view: time_in_deal_stage_history {
   }
 
   dimension: deal_id {
-    hidden: no
+    hidden: yes
     type: number
     sql: ${TABLE}.deal_id ;;
   }
@@ -62,6 +62,7 @@ view: time_in_deal_stage_history {
   }
 
   dimension: has_exited_deal_stage {
+    hidden: yes
     type: yesno
     sql: ${exit_timestamp_raw} IS NOT NULL ;;
   }
@@ -78,67 +79,69 @@ view: time_in_deal_stage_history {
     intervals: [minute,hour,day]
   }
 
-  dimension: minutes_in_deal_stage_tier {
-    type: tier
-    sql: ${minutes_in_deal_stage} ;;
-    tiers: [100,200,300,400,500,600,700,800,900,1000]
+  dimension: days_in_deal_stage_tier {
+    type: number
+    sql: ${days_in_deal_stage} ;;
+    tiers: [1,2,3,4,5,6,7,8,9,10]
     style: integer
   }
 
-  measure: average_minutes_in_deal_stage {
+  measure: average_days_in_deal_stage {
     group_label: "Duration KPIs"
     type: average
-    sql: ${minutes_in_deal_stage} ;;
-    html: {{ rendered_value }} <span>minutes</span> ;;
-    value_format_name: id
+    sql: ${days_in_deal_stage} ;;
+    html: {{ rendered_value }} <span>days</span> ;;
+    value_format_name: decimal_1
   }
 
-  measure: median_minutes_in_deal_stage {
+  measure: median_days_in_deal_stage {
     group_label: "Duration KPIs"
     type: median
-    sql: ${minutes_in_deal_stage} ;;
-    html: {{ rendered_value }} <span>minutes</span> ;;
+    sql: ${days_in_deal_stage} ;;
+    html: {{ rendered_value }} <span>days</span> ;;
     value_format_name: id
   }
 
-}
-
-view: deal_stage_facts {
-  derived_table: {
-    indexes: ["deal_id"]
-    sql:
-      SELECT
-          tish1.deal_id
-        , (SELECT tish2.deal_stage FROM ${time_in_deal_stage_history.SQL_TABLE_NAME} tish2 WHERE tish2.deal_id = tish1.deal_id AND tish2.deal_stage_sequence = 1) AS deal_stage1
-        , (SELECT tish2.deal_stage FROM ${time_in_deal_stage_history.SQL_TABLE_NAME} tish2 WHERE tish2.deal_id = tish1.deal_id AND tish2.deal_stage_sequence = 2) AS deal_stage2
-        , (SELECT tish2.deal_stage FROM ${time_in_deal_stage_history.SQL_TABLE_NAME} tish2 WHERE tish2.deal_id = tish1.deal_id AND tish2.deal_stage_sequence = 3) AS deal_stage3
-        , (SELECT tish2.deal_stage FROM ${time_in_deal_stage_history.SQL_TABLE_NAME} tish2 WHERE tish2.deal_id = tish1.deal_id AND tish2.deal_stage_sequence = 4) AS deal_stage4
-        , (SELECT tish2.deal_stage FROM ${time_in_deal_stage_history.SQL_TABLE_NAME} tish2 WHERE tish2.deal_id = tish1.deal_id AND tish2.deal_stage_sequence = 5) AS deal_stage5
-      FROM ${time_in_deal_stage_history.SQL_TABLE_NAME} tish1
-    ;;
-    persist_for: "24 hours"
+  measure: count_total {
+    alias: [count]
+    type: count
+    drill_fields: [deal_id]
   }
 
-  dimension: deal_id {
-    hidden: yes
+  measure: count_total_deals {
+    alias: [count_distinct]
+    type: count_distinct
+    sql:${deal_id};;
+    drill_fields: [deal_id]
+  }
+
+  measure: count_sql {
+    label: "(1) Count SQL"
+    group_label: "Funnel Counts"
+    type: count
+    filters: [macro_status: "SQL"]
+  }
+
+  measure: count_cotacao {
+    label: "(2) Count Cotação"
+    group_label: "Funnel Counts"
+    type: count
+    filters: [macro_status: "Cotação"]
+  }
+
+  measure: count_contratacao {
+    label: "(3) Contratação - Contratação Iniciada"
+    group_label: "Funnel Counts"
+    type: count
+    filters: [macro_status: "Contratação - Contratação Iniciada"]
+  }
+
+  measure: percentage_cotacao_sql {
+    label: "%Cotação/SQL"
+    group_label: "Funnel Percents"
     type: number
-    sql: ${TABLE}.deal_id ;;
-  }
-
-  dimension: deal_stage1 {
-    sql: COALESCE(${TABLE}.deal_stage1,'n/a') ;;
-  }
-  dimension: deal_stage2 {
-    sql: COALESCE(${TABLE}.deal_stage2,'n/a') ;;
-  }
-  dimension: deal_stage3 {
-    sql: COALESCE(${TABLE}.deal_stage3,'n/a') ;;
-  }
-  dimension: deal_stage4 {
-    sql: COALESCE(${TABLE}.deal_stage4,'n/a') ;;
-  }
-  dimension: deal_stage5 {
-    sql: COALESCE(${TABLE}.deal_stage5,'n/a') ;;
+    sql: 1.0 * ${count_cotacao} / NULLIF(${count_total},0) ;;
+    value_format_name: percent_2
   }
 
 }

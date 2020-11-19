@@ -23,16 +23,19 @@ view: deal_pipeline {
   }
 
   dimension: active {
+    hidden: yes
     type: yesno
     sql: ${TABLE}."active" ;;
   }
 
   dimension: display_order {
+    hidden: yes
     type: number
     sql: ${TABLE}."display_order" ;;
   }
 
   dimension: label {
+    hidden: yes
     type: string
     sql: ${TABLE}."label" ;;
   }

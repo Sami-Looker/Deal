@@ -23,11 +23,13 @@ view: contact_property_history {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}."name" ;;
   }
 
   dimension: source {
+    hidden: yes
     type: string
     sql: ${TABLE}."source" ;;
   }
@@ -39,6 +41,7 @@ view: contact_property_history {
   }
 
   dimension_group: timestamp {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -53,11 +56,13 @@ view: contact_property_history {
   }
 
   dimension: value {
+    hidden: yes
     type: string
     sql: ${TABLE}."value" ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [name]
   }

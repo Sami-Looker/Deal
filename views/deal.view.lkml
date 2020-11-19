@@ -1,16 +1,21 @@
 include: "/base_views/deal_base.view"
 
-view: deal {
+view: deal{
   extends: [deal_base]
   sql_table_name: hubspot.deal ;;
 
-  drill_fields: [deal_id]
+  drill_fields: [dealname]
 
   dimension: deal_id {
     hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}."deal_id" ;;
+  }
+
+  dimension: data_pagamento {
+    type: date
+    sql: ${TABLE}."data_pagamento" ;;
   }
 
   dimension_group: _fivetran_synced {
@@ -36,11 +41,12 @@ view: deal {
 
   dimension: deal_pipeline_stage_id {
     hidden: yes
-    type: number
+    type: string
     sql: ${TABLE}."deal_pipeline_stage_id" ;;
   }
 
   dimension: is_deleted {
+    hidden: yes
     type: yesno
     sql: ${TABLE}."is_deleted" ;;
   }
@@ -73,6 +79,7 @@ view: deal {
   }
 
   dimension_group: close {
+    label: "Close Date"
     type: time
     timeframes: [
       raw,
@@ -87,6 +94,7 @@ view: deal {
   }
 
   dimension_group: create {
+    label: "Create Date"
     type: time
     timeframes: [
       raw,
@@ -100,34 +108,37 @@ view: deal {
     sql: ${TABLE}."property_createdate" ;;
   }
 
-  dimension: data_da_situacao_cadastral {
-    type: number
-    sql: ${TABLE}."property_data_da_situacao_cadastral" ;;
-  }
-
-  dimension: data_do_pagamento {
-    type: number
-    sql: ${TABLE}."property_data_do_pagamento" ;;
-  }
-
   dimension: days_to_close {
+    label: "Days to Close"
     type: number
     sql: ${TABLE}."property_days_to_close" ;;
   }
 
   dimension: dealname {
+    label: "Deal Name"
     type: string
     sql: ${TABLE}."property_dealname" ;;
   }
 
-  dimension: endereco {
+  dimension: property_deal_currency_code {
+    hidden: yes
     type: string
-    sql: ${TABLE}."property_endereco" ;;
+    sql: ${TABLE}."property_deal_currency_code" ;;
   }
 
-  dimension: forma_de_pagamento {
-    type: string
-    sql: ${TABLE}."property_forma_de_pagamento" ;;
+  dimension_group: property_engagements_last_meeting_booked {
+    hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."property_engagements_last_meeting_booked" ;;
   }
 
   dimension: hs_all_accessible_team_ids {
@@ -152,31 +163,48 @@ view: deal {
   }
 
   dimension: hs_analytics_source {
+    label: "Main Source"
+    group_label: "Source"
     type: string
     sql: ${TABLE}."property_hs_analytics_source" ;;
   }
 
   dimension: hs_analytics_source_data_1 {
+    label: "Main Source Data 1"
+    group_label: "Source"
     type: string
     sql: ${TABLE}."property_hs_analytics_source_data_1" ;;
   }
 
   dimension: hs_analytics_source_data_2 {
+    label: "Main Source Data 2"
+    group_label: "Source"
     type: string
     sql: ${TABLE}."property_hs_analytics_source_data_2" ;;
   }
 
   dimension: hs_closed_amount {
+    label: "Closed Amount"
+    group_label: "Amounts"
     type: number
     sql: ${TABLE}."property_hs_closed_amount" ;;
   }
 
   dimension: hs_closed_amount_in_home_currency {
+    label: "Closed Amount in Home Currency"
+    group_label: "Amounts"
     type: number
     sql: ${TABLE}."property_hs_closed_amount_in_home_currency" ;;
   }
 
+  dimension: property_hs_created_by_user_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}."property_hs_created_by_user_id" ;;
+  }
+
   dimension_group: property_hs_createdate {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -190,31 +218,20 @@ view: deal {
     sql: ${TABLE}."property_hs_createdate" ;;
   }
 
-  dimension_group: property_hs_date_entered_4018240 {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}."property_hs_date_entered_4018240" ;;
-  }
-
   dimension: hs_deal_stage_probability {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_deal_stage_probability" ;;
   }
 
   dimension: hs_is_closed {
+    hidden: yes
     type: yesno
     sql: ${TABLE}."property_hs_is_closed" ;;
   }
 
   dimension_group: property_hs_lastmodifieddate {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -228,17 +245,35 @@ view: deal {
     sql: ${TABLE}."property_hs_lastmodifieddate" ;;
   }
 
+  dimension_group: property_hs_latest_meeting_activity {
+    hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."property_hs_latest_meeting_activity" ;;
+  }
+
   dimension: hs_projected_amount {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_projected_amount" ;;
   }
 
   dimension: hs_projected_amount_in_home_currency {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_hs_projected_amount_in_home_currency" ;;
   }
 
   dimension_group: property_hs_sales_email_last_replied {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -250,11 +285,6 @@ view: deal {
       year
     ]
     sql: ${TABLE}."property_hs_sales_email_last_replied" ;;
-  }
-
-  dimension: hs_time_in_4018240 {
-    type: number
-    sql: ${TABLE}."property_hs_time_in_4018240" ;;
   }
 
   dimension: hs_updated_by_user_id {
@@ -271,6 +301,7 @@ view: deal {
   }
 
   dimension_group: property_hubspot_owner_assigneddate {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -284,6 +315,12 @@ view: deal {
     sql: ${TABLE}."property_hubspot_owner_assigneddate" ;;
   }
 
+  dimension: property_motivo_do_contrato_perdido {
+    label: "Motivo do Contrato Perdido"
+    type: string
+    sql: ${TABLE}."property_motivo_do_contrato_perdido" ;;
+  }
+
   dimension: hubspot_team_id {
     hidden: yes
     type: number
@@ -291,56 +328,89 @@ view: deal {
   }
 
   dimension: n_00_ate_18_anos {
+    label: "00_ate_18_anos"
+    group_label: "Faixa Etária"
     type: number
     sql: ${TABLE}."property_n_00_ate_18_anos" ;;
   }
 
   dimension: n_19_ate_23_anos {
+    label: "19_ate_23_anos"
+    group_label: "Faixa Etária"
     type: number
     sql: ${TABLE}."property_n_19_ate_23_anos" ;;
   }
 
   dimension: n_24_ate_28_anos {
+    label: "24_ate_28_anos"
+    group_label: "Faixa Etária"
     type: number
     sql: ${TABLE}."property_n_24_ate_28_anos" ;;
   }
 
   dimension: n_29_ate_33_anos {
+    label: "29_ate_33_anos"
+    group_label: "Faixa Etária"
     type: number
     sql: ${TABLE}."property_n_29_ate_33_anos" ;;
   }
 
   dimension: n_34_ate_38_anos {
+    label: "34_ate_38_anos"
+    group_label: "Faixa Etária"
     type: number
     sql: ${TABLE}."property_n_34_ate_38_anos" ;;
   }
 
   dimension: n_39_ate_43_anos {
+    label: "39_ate_43_anos"
+    group_label: "Faixa Etária"
     type: number
     sql: ${TABLE}."property_n_39_ate_43_anos" ;;
   }
 
   dimension: n_44_ate_48_anos {
+    label: "44_ate_48_anos"
+    group_label: "Faixa Etária"
     type: number
     sql: ${TABLE}."property_n_44_ate_48_anos" ;;
   }
 
   dimension: n_49_ate_53_anos {
+    label: "49_ate_53_anos"
+    group_label: "Faixa Etária"
     type: number
     sql: ${TABLE}."property_n_49_ate_53_anos" ;;
   }
 
   dimension: n_54_ate_58_anos {
+    label: "54_ate_58_anos"
+    group_label: "Faixa Etária"
     type: number
     sql: ${TABLE}."property_n_54_ate_58_anos" ;;
   }
 
   dimension: n_59_ou_mais {
+    label: "59_ou_mais"
+    group_label: "Faixa Etária"
     type: number
     sql: ${TABLE}."property_n_59_ou_mais" ;;
   }
 
+  dimension: property_no_do_cnpj {
+    label: "CNPJ"
+    type: string
+    sql: ${TABLE}."property_no_do_cnpj" ;;
+  }
+
+  dimension: property_nome_do_vendedor {
+    label: "Vendedor"
+    type: string
+    sql: ${TABLE}."property_nome_do_vendedor" ;;
+  }
+
   dimension_group: property_notes_last_contacted {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -355,6 +425,7 @@ view: deal {
   }
 
   dimension_group: property_notes_last_updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -368,37 +439,65 @@ view: deal {
     sql: ${TABLE}."property_notes_last_updated" ;;
   }
 
+  dimension_group: property_notes_next_activity {
+    hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."property_notes_next_activity_date" ;;
+  }
+
   dimension: num_contacted_notes {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_num_contacted_notes" ;;
   }
 
   dimension: num_notes {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_num_notes" ;;
   }
 
   dimension: persona {
+    label: "Persona"
     type: string
     sql: ${TABLE}."property_persona" ;;
   }
 
-  dimension: plano {
+  dimension: property_possui_cnpj_aberto_ {
+    label: "Possui CNPJ Aberto"
     type: string
-    sql: ${TABLE}."property_plano" ;;
+    sql: ${TABLE}."property_possui_cnpj_aberto_" ;;
   }
 
   dimension: pra_quem_e_o_plano_ {
+    label: "Para quem é o Plano"
     type: string
     sql: ${TABLE}."property_pra_quem_e_o_plano_" ;;
   }
 
   dimension: profissao {
+    label: "Profissão"
     type: string
     sql: ${TABLE}."property_profissao" ;;
   }
 
-  dimension: quantidade_de_vidas {
+  dimension: property_qual_tipo_de_cnpj_ {
+    label: "Tipo de CNPJ"
+    type: string
+    sql: ${TABLE}."property_qual_tipo_de_cnpj_" ;;
+  }
+
+  dimension: property_quantidade_de_vidas {
+    label: "Qtd. de Vidas"
     type: number
     sql: ${TABLE}."property_quantidade_de_vidas" ;;
   }
@@ -413,64 +512,49 @@ view: deal {
     sql: ${TABLE}."property_tem_plano_medico_" ;;
   }
 
-  dimension: tipo_de_cnpj {
-    type: string
-    sql: ${TABLE}."property_tipo_de_cnpj" ;;
-  }
-
-  # Use Extends to keep common stage definitions in one place
-  dimension: ultima_etapa {
-    type: string
-    sql: ${TABLE}."property_ultima_etapa" ;;
-  }
-
   dimension: deal_stage {
     type: string
     sql: ${deal_pipeline_stage.label} ;;
   }
 
+  dimension: deal_pipeline {
+    type: string
+    sql: ${deal_pipeline.label} ;;
+  }
 
-  # dimension: property_ultima_etapa {
-  #   label: "Ultima Etapa"
-  #   type: string
-  #   sql: ${TABLE}."property_ultima_etapa" ;;
-  # }
+  dimension: property_email {
+    label: "e-mail"
+    type: string
+    sql: ${contact.property_email} ;;
+  }
 
-  # dimension: macro_status {
-  #   type: string
-  #   sql:
-  #     CASE
-  #       WHEN ${property_ultima_etapa} = 'Pagamento recusado' THEN 'Contratação'
-  #       WHEN ${property_ultima_etapa} = 'Dados dos beneficiários' THEN 'SQL'
-  #       WHEN ${property_ultima_etapa} = 'Qualificação' THEN 'SQL'
-  #       WHEN ${property_ultima_etapa} = 'Sobre você' THEN 'SQL'
-  #       WHEN ${property_ultima_etapa} = 'Cotação' THEN 'Cotação'
-  #       WHEN ${property_ultima_etapa} = 'Pré-cotação' THEN 'Cotação'
-  #       WHEN ${property_ultima_etapa} = 'Documentação recusada' THEN 'Contratação'
-  #       WHEN ${property_ultima_etapa} = 'Contratado' THEN 'Contratação'
-  #       WHEN ${property_ultima_etapa} = 'Envio de documentação' THEN 'Contratação'
-  #       WHEN ${property_ultima_etapa} = 'Documentação aprovada' THEN 'Contratação'
-  #       WHEN ${property_ultima_etapa} = 'Pagamento agendado' THEN 'Contratação'
-  #     END
-  #   ;;
-  # }
+  dimension: profile_url {
+    type: string
+    sql: ${contact.profile_url} ;;
+  }
 
-#Homework:
-# 1. Finish macro_status definition
-# 2. Add counts for other macro_status
-# 3. Build funnel visualization
+  dimension: property_lastname {
+    label: "Last Name"
+    type: string
+    sql: ${contact.property_lastname} ;;
+  }
 
-# 1 Pagamento recusado - SQL
-# 2 Dados dos beneficiários - SQL
-# 3 Qualificação - SQL
-# 4 Cotação - Cotação
-# 5 Sobre você - SQL
-# 6 Pré-cotação - Cotação
-# 7 Documentação recusada - Contratação
-# 8 Contratado - Contratação
-# 9 Envio de documentação - Contratação
-# 10  Documentação aprovada - Contratação
+  dimension: property_firstname {
+    label: "First Name"
+    type: string
+    sql: ${contact.property_firstname};;
+  }
 
+  dimension: property_name {
+    label: "Complete Name"
+    type: string
+    sql: Concat(${contact.property_firstname},' ', ${contact.property_lastname}) ;;
+  }
+  dimension: property_phone {
+    label: "Phone"
+    type: string
+    sql: ${contact.property_phone} ;;
+  }
 
   ## Total Qualified Leads
   measure: count_total {
@@ -502,17 +586,19 @@ view: deal {
     value_format_name: percent_2
   }
 
-  measure: count_contratacao {
-    label: "(3) Count Contratação"
+  measure: percentage_contratado_sql {
+    label: "%Contratado/SQL"
+    group_label: "Funnel Percents"
+    type: number
+    sql: 1.0 * ${count_contratado} / NULLIF(${count_total},0) ;;
+    value_format_name: percent_2
+  }
+
+  measure: count_contratado {
+    label: "(3) Count Contratado"
     group_label: "Funnel Counts"
     type: count
-    filters: [macro_status: "Contratação"]
+    filters: [macro_status: "Contratado"]
   }
-
-  dimension: ultimo_pipeline {
-    type: string
-    sql: ${TABLE}."property_ultimo_pipeline" ;;
-  }
-
 
 }
