@@ -2,17 +2,6 @@ connection: "sami_dw"
 
 include: "/views/**/*.view"
 
-
-explore: beneficiaries {
-  label: "Benf"
-
-  join: companies {
-    type: left_outer
-    sql_on: ${beneficiaries.companyid}} = ${companies._id} ;;
-    relationship: many_to_one
-  }
-}
-
 explore: deal {
   label: "Deals"
 
@@ -32,13 +21,13 @@ explore: deal {
 
   join: beneficiaries {
     type: left_outer
-    sql_on: ${beneficiaries.companyid}} = ${companies._id} ;;
+    sql_on: ${beneficiaries.companyid} = ${companies._id} ;;
     relationship: many_to_one
   }
 
   join: companies {
     type: left_outer
-    sql_on: ${deal.property_no_do_cnpj} = ${companies.cnpj} ;;
+    sql_on: ${companies.cnpj} =${deal.property_no_do_cnpj} ;;
     relationship: one_to_one
   }
 

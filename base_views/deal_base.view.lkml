@@ -13,7 +13,7 @@ view: deal_base {
        WHEN ${deal_stage} = 'Beneficiários cadastrados' THEN 'SQL'
        WHEN ${deal_stage} = 'Contratação iniciada' THEN 'Contratação Iniciada'
        WHEN ${deal_stage} = 'Contratado' THEN 'Contratado'
-       WHEN ${deal_stage} = 'Contrato perdido' THEN 'Contratação Iniciada'
+       WHEN ${deal_stage} = 'Contrato perdido' THEN 'Contrato perdido'
        WHEN ${deal_stage} = 'Cotação enviada' THEN 'Cotação'
        WHEN ${deal_stage} = 'Carta de interesse enviada' THEN 'Cotação'
        WHEN ${deal_stage} = 'Documentação aprovada' THEN 'Contratação Iniciada'

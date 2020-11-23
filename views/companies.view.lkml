@@ -34,7 +34,7 @@ view: companies {
   }
 
   dimension: alias {
-    hidden: no
+    hidden: yes
     type: string
     sql: ${TABLE}."alias" ;;
   }
@@ -46,6 +46,7 @@ view: companies {
   }
 
   dimension: capital {
+    hidden: yes
     type: number
     sql: ${TABLE}."capital" ;;
   }
@@ -96,6 +97,7 @@ view: companies {
   }
 
   dimension: email {
+    hidden: yes
     label: "e-mail"
     type: string
     sql: ${TABLE}."email" ;;
@@ -114,6 +116,7 @@ view: companies {
   }
 
   dimension: founded {
+    hidden: yes
     type: string
     sql: ${TABLE}."founded" ;;
   }
@@ -149,16 +152,19 @@ view: companies {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}."name" ;;
   }
 
   dimension: phone {
+    hidden: yes
     type: string
     sql: ${TABLE}."phone" ;;
   }
 
   dimension: phone_alt {
+    hidden: yes
     type: string
     sql: ${TABLE}."phone_alt" ;;
   }
@@ -188,6 +194,7 @@ view: companies {
   }
 
   dimension: size {
+    hidden: yes
     type: string
     sql: ${TABLE}."size" ;;
   }
@@ -211,10 +218,5 @@ view: companies {
       year
     ]
     sql: ${TABLE}."updatedat" ;;
-  }
-
-  measure: count {
-    type: count
-    drill_fields: [id, name]
   }
 }

@@ -480,13 +480,15 @@ view: company {
   }
 
   dimension: name {
+    hidden: yes
+
     type: string
     sql: ${TABLE}."property_name" ;;
   }
 
   dimension: no_do_cnpj {
     hidden: yes
-    type: number
+    type: string
     sql: ${TABLE}."property_no_do_cnpj" ;;
   }
 
@@ -636,5 +638,48 @@ view: company {
     group_label: "Location"
     type: string
     sql: ${TABLE}."property_zip" ;;
+  }
+
+  dimension: alias {
+    hidden: no
+    type: string
+    sql: ${companies.alias} ;;
+  }
+  dimension: capital {
+    type: number
+    sql: ${companies.capital} ;;
+  }
+
+  dimension: cnpj {
+    hidden: no
+    type: string
+    sql: ${companies.cnpj} ;;
+  }
+  dimension: email {
+    label: "e-mail"
+    type: string
+    sql: ${companies.email} ;;
+  }
+  dimension: founded {
+    type: string
+    sql: ${companies.founded} ;;
+  }
+  dimension: Nome {
+    type: string
+    sql: ${companies.name} ;;
+  }
+
+  dimension: main_phone {
+    type: string
+    sql: ${companies.phone} ;;
+  }
+
+  dimension: phone_alt {
+    type: string
+    sql: ${companies.phone_alt} ;;
+  }
+  dimension: size {
+    type: string
+    sql: ${companies.size} ;;
   }
 }
