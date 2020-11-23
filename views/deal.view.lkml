@@ -14,6 +14,7 @@ view: deal{
   }
 
   dimension: data_pagamento {
+    label: "Data de Vigência"
     type: date
     sql: ${TABLE}."data_pagamento" ;;
   }
@@ -118,6 +119,12 @@ view: deal{
     label: "Deal Name"
     type: string
     sql: ${TABLE}."property_dealname" ;;
+  }
+
+  dimension: formapagamento{
+    label: "Forma de Pagamento"
+    type: string
+    sql: ${TABLE}."property_forma_de_pagamento" ;;
   }
 
   dimension: property_deal_currency_code {
