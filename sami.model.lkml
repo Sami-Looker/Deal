@@ -2,10 +2,6 @@ connection: "sami_dw"
 
 include: "/views/**/*.view"
 
-explore: contact {
-  label: "Contacts"
-}
-
 explore: deal {
   label: "Deals"
 
