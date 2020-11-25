@@ -2,6 +2,10 @@ connection: "sami_dw"
 
 include: "/views/**/*.view"
 
+explore: contact {
+  label: "Contacts"
+}
+
 explore: deal {
   label: "Deals"
 
@@ -29,6 +33,12 @@ explore: deal {
     type: left_outer
     sql_on: ${companies.cnpj} =${deal.property_no_do_cnpj} ;;
     relationship: one_to_one
+  }
+
+  join: novos_membros {
+    type: left_outer
+    sql_on: ${novos_membros.nome}=${beneficiaries.name} ;;
+    relationship: many_to_many
   }
 
   join: deal_contact {

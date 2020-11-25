@@ -567,7 +567,7 @@ view: deal{
   measure: count_total {
     alias: [count]
     type: count
-    drill_fields: [deal_id, dealname]
+    drill_fields: [dealname]
   }
 
   ## Create Filtered Measures

@@ -158,6 +158,57 @@ view: beneficiaries {
     sql: ${TABLE}."validationdocument" ;;
   }
 
+  dimension: data_1_contato_do_time_de_saude_via_chat {
+    hidden: no
+    type: date
+    sql: ${novos_membros.data_1_contato_do_time_de_saude_via_chat} ;;
+  }
+  dimension: data_do_cadastro_no_app_do_membro {
+    hidden: no
+    type: date
+    sql: ${novos_membros.data_do_cadastro_no_app_do_membro} ;;
+  }
+  dimension: disparo_da_pesquisa_de_pos_atendimento_embarque_ {
+    hidden: no
+    type: date
+    sql: ${novos_membros.disparo_da_pesquisa_de_pos_atendimento_embarque_} ;;
+  }
+  dimension: houve_resposta_ao_chat_do_time_clinico_ {
+    hidden: no
+    type: string
+    sql: ${novos_membros.houve_resposta_ao_chat_do_time_clinico_} ;;
+  }
+
+  dimension: pos_vendas_disparo_form_gympass_para_membro {
+    hidden: no
+    type: date
+    sql: ${novos_membros.pos_vendas_disparo_form_gympass_para_membro} ;;
+  }
+
+  dimension: status_do_embarque_clinico {
+    hidden: no
+    type: string
+    sql: ${novos_membros.status_do_embarque_clinico} ;;
+  }
+
+  dimension: estimado_data_de_envio_de_push_no_app_no_membro {
+    hidden: no
+    type: date
+    sql: ${data_1_contato_do_time_de_saude_via_chat} + INTERVAL '3 days';;
+  }
+
+  dimension: estimado_data_de_envio_do_1_e_mail_mkt {
+    hidden: no
+    type: date
+    sql: ${data_1_contato_do_time_de_saude_via_chat} + INTERVAL '3 days';;
+  }
+
+  dimension: estimado_data_de_envio_do_2_e_mail_mkt {
+    hidden: no
+    type: date
+    sql: ${novos_membros.estimado_data_de_envio_do_1_e_mail_mkt} + INTERVAL '3 days';;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, name, mothersname, plans.id, plans.name]

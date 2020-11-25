@@ -665,6 +665,7 @@ view: company {
     sql: ${companies.founded} ;;
   }
   dimension: Nome {
+    label: "Company Name"
     type: string
     sql: ${companies.name} ;;
   }
