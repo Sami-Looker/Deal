@@ -224,11 +224,7 @@ view: beneficiaries {
     type: number
     sql: ${users.addressnumber} ;;
   }
-  dimension: careteamid {
-    hidden: yes
-    type: string
-    sql: ${users.careteamid} ;;
-  }
+
   dimension: city {
     label: "Beneficiaries City"
     group_label: "Location"
@@ -272,6 +268,20 @@ view: beneficiaries {
     group_label: "Location"
     type: string
     sql: Concat(${users.address},', ', ${users.addressnumber},' - ',${users.complement},' - ',${users.district}, ' - CEP ',${users.zipcode}) ;;
+  }
+
+  dimension: createdat {
+    label: "Data do cadastro no App do membro"
+    hidden: no
+    type: date
+    sql: ${users.createdat} ;;
+  }
+
+  dimension: careteamid {
+    label: "Careteam ID"
+    hidden: no
+    type: string
+    sql: ${users.careteamid} ;;
   }
 
   measure: count {

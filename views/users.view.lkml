@@ -105,18 +105,9 @@ view: users {
     sql: ${TABLE}."cpf" ;;
   }
 
-  dimension_group: createdat {
+  dimension: createdat {
     hidden: yes
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+    type: date
     sql: ${TABLE}."createdat" ;;
   }
 
