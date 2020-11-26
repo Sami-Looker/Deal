@@ -37,6 +37,7 @@ view: company {
   }
 
   dimension: Address {
+    hidden: yes
     group_label: "Location"
     type: string
     sql: ${TABLE}."property_address" ;;
@@ -50,6 +51,7 @@ view: company {
   }
 
   dimension: City {
+    hidden: yes
     group_label: "Location"
     type: string
     sql: ${TABLE}."property_city" ;;
@@ -72,6 +74,7 @@ view: company {
   }
 
   dimension: Country {
+    hidden: yes
     group_label: "Location"
     type: string
     sql: ${TABLE}."property_country" ;;
@@ -600,12 +603,14 @@ view: company {
   }
 
   dimension: state {
+    hidden: yes
     group_label: "Location"
     type: string
     sql: ${TABLE}."property_state" ;;
   }
 
   dimension: timezone {
+    hidden: yes
     group_label: "Location"
     type: string
     sql: ${TABLE}."property_timezone" ;;
@@ -636,6 +641,7 @@ view: company {
 
   dimension: zip {
     group_label: "Location"
+    hidden: yes
     type: string
     sql: ${TABLE}."property_zip" ;;
   }
@@ -683,4 +689,68 @@ view: company {
     type: string
     sql: ${companies.size} ;;
   }
+
+  dimension: address {
+    label: "Address"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${companies_addressinfo.address} ;;
+  }
+
+  dimension: city {
+    label: "City"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${companies_addressinfo.city};;
+  }
+
+  dimension: complement {
+    label: "Complement"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${companies_addressinfo.complement};;
+  }
+
+  dimension: district {
+    label: "District"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${companies_addressinfo.district} ;;
+  }
+
+  dimension: number {
+    label: "Number"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${companies_addressinfo.number} ;;
+  }
+
+  dimension: state2 {
+    label: "State"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${companies_addressinfo.state} ;;
+  }
+
+  dimension: zipcode {
+    label: "Zipcode"
+    group_label: "Location"
+    hidden: no
+    type: zipcode
+    sql: ${companies_addressinfo.zipcode} ;;
+  }
+
+  dimension: complete_address {
+    group_label: "Location"
+    label: "Complete Address"
+    type: string
+    sql: Concat(${companies_addressinfo.address},', ', ${companies_addressinfo.number},' - ',${companies_addressinfo.complement},' - ',${companies_addressinfo.district}, ' - CEP ',${companies_addressinfo.zipcode}) ;;
+  }
+
 }

@@ -209,6 +209,71 @@ view: beneficiaries {
     sql: ${novos_membros.estimado_data_de_envio_do_1_e_mail_mkt} + INTERVAL '3 days';;
   }
 
+  dimension: address {
+    label: "Beneficiaries Address"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${users.address} ;;
+  }
+
+  dimension: addressnumber {
+    label: "Beneficiaries Number"
+    group_label: "Location"
+    hidden: no
+    type: number
+    sql: ${users.addressnumber} ;;
+  }
+  dimension: careteamid {
+    hidden: yes
+    type: string
+    sql: ${users.careteamid} ;;
+  }
+  dimension: city {
+    label: "Beneficiaries City"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${users.city} ;;
+  }
+
+  dimension: complement {
+    label: "Beneficiaries Complement"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${users.complement} ;;
+  }
+
+  dimension: district {
+    label: "Beneficiaries District"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${users.district} ;;
+  }
+  dimension: state {
+    label: "Beneficiaries State"
+    group_label: "Location"
+    hidden: no
+    type: string
+    sql: ${users.state} ;;
+  }
+  dimension: zipcode {
+    label: "Beneficiaries Zipcode"
+    group_label: "Location"
+    hidden: no
+    type: zipcode
+    sql: ${users.zipcode} ;;
+  }
+
+  dimension: complete_address {
+    label: "Beneficiaries Complete Address"
+    group_label: "Location"
+    type: string
+    sql: Concat(${users.address},', ', ${users.addressnumber},' - ',${users.complement},' - ',${users.district}, ' - CEP ',${users.zipcode}) ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, name, mothersname, plans.id, plans.name]

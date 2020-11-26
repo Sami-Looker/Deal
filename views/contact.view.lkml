@@ -1296,7 +1296,7 @@ view: contact {
   }
 
   measure: count {
-    hidden: no
+    hidden: yes
     type: count
     drill_fields: [id, property_firstname, property_lastname, property_hs_email_last_email_name, property_ownername]
   }
