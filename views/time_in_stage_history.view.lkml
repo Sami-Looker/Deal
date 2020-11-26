@@ -39,12 +39,13 @@ view: time_in_stage_history {
   }
 
   dimension: deal_stage {
+    hidden: yes
     type: string
     sql: ${TABLE}.deal_stage ;;
   }
 
   dimension: deal_stage_sequence {
-    hidden: no
+    hidden: yes
     type: number
     sql: ${TABLE}.deal_stage_sequence ;;
   }

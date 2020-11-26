@@ -164,7 +164,7 @@ view: beneficiaries {
     sql: ${novos_membros.data_1_contato_do_time_de_saude_via_chat} ;;
   }
   dimension: data_do_cadastro_no_app_do_membro {
-    hidden: no
+    hidden: yes
     type: date
     sql: ${novos_membros.data_do_cadastro_no_app_do_membro} ;;
   }
