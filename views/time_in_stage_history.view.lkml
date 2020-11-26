@@ -1,6 +1,7 @@
 include: "/base_views/deal_base.view"
 
 view: time_in_stage_history {
+  label: "Deal History"
   extends: [deal_base]
   derived_table: {
     indexes: ["deal_id"]
@@ -39,7 +40,8 @@ view: time_in_stage_history {
   }
 
   dimension: deal_stage {
-    hidden: yes
+    label: "Deal Stage History"
+    hidden: no
     type: string
     sql: ${TABLE}.deal_stage ;;
   }
