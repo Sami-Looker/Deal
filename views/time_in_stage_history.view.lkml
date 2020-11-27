@@ -17,6 +17,7 @@ view: time_in_stage_history {
       WHERE dph.name = 'deal_pipeline_stage_id'
       ORDER BY dph.deal_id
     ;;
+    persist_for: "1 hour"
   }
 
   # S1->S2 T1
