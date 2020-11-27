@@ -47,7 +47,7 @@ view: time_in_stage_history {
   }
 
   dimension: deal_stage_sequence {
-    hidden: yes
+    hidden: no
     type: number
     sql: ${TABLE}.deal_stage_sequence ;;
   }

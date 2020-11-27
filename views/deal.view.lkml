@@ -570,6 +570,12 @@ view: deal{
     drill_fields: [dealname]
   }
 
+  measure: sum_amount {
+    type: sum
+    sql: ${amount} ;;
+    drill_fields: [dealname]
+  }
+
   ## Create Filtered Measures
   measure: count_sql {
     label: "(1) Count SQL"
