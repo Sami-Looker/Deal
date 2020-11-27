@@ -21,13 +21,15 @@ view: deal_base {
        WHEN ${deal_stage} = 'Interesse demonstrado' THEN 'SQL'
        WHEN ${deal_stage} = 'Interesse validado' THEN 'SQL'
        WHEN ${deal_stage} = 'Qualificado e sem contato' THEN 'SQL'
-       WHEN ${deal_stage} = 'Declinado' THEN 'SQL'
+       WHEN ${deal_stage} = 'Declinado' THEN 'Contrato Perdido'
        WHEN ${deal_stage} = 'Contato realizado' THEN 'SQL'
        WHEN ${deal_stage} = 'Onboarding' THEN 'Contratado'
        WHEN ${deal_stage} = 'Pagamento agendado' THEN 'Pgto Agendado'
        WHEN ${deal_stage} = 'Qualificado' THEN 'SQL'
        WHEN ${deal_stage} = 'Qualificado inativo' THEN 'SQL'
        WHEN ${deal_stage} = 'Qualificado com contato' THEN 'SQL'
+       WHEN ${deal_stage} = 'Carta de interesse assinada' THEN 'Cotação'
+       WHEN ${deal_stage} = 'Sem contato' THEN 'SQL'
       END
     ;;
   }
