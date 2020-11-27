@@ -192,19 +192,19 @@ view: beneficiaries {
   }
 
   dimension: estimado_data_de_envio_de_push_no_app_no_membro {
-    hidden: no
+    hidden: yes
     type: date
     sql: ${data_1_contato_do_time_de_saude_via_chat} + INTERVAL '3 days';;
   }
 
   dimension: estimado_data_de_envio_do_1_e_mail_mkt {
-    hidden: no
+    hidden: yes
     type: date
     sql: ${data_1_contato_do_time_de_saude_via_chat} + INTERVAL '3 days';;
   }
 
   dimension: estimado_data_de_envio_do_2_e_mail_mkt {
-    hidden: no
+    hidden: yes
     type: date
     sql: ${novos_membros.estimado_data_de_envio_do_1_e_mail_mkt} + INTERVAL '3 days';;
   }
