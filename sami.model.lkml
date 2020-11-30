@@ -107,6 +107,6 @@ explore: deal {
 
   always_filter: {filters:[deal.is_deleted: "no"]
 
-    }
+  }
 
 }
