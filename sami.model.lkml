@@ -104,4 +104,9 @@ explore: deal {
     sql_on: ${deal.deal_id} = ${time_in_stage_history.deal_id} ;;
     relationship: one_to_one
   }
+
+  always_filter: {filters:[deal.is_deleted: "no"]
+
+    }
+
 }
