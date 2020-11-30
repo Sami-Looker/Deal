@@ -55,13 +55,13 @@ view: time_in_stage_history {
   dimension_group: enter_timestamp {
     type: time
     sql: ${TABLE}.timestamp ;;
-    timeframes: [raw,date,month,year]
+    timeframes: [raw,date,week,week_of_year,month,year]
   }
 
   dimension_group: exit_timestamp {
     type: time
     sql: ${TABLE}.exit_timestamp ;;
-    timeframes: [raw,date,month,year]
+    timeframes: [raw,date,week,week_of_year,month,year]
   }
 
   dimension: has_exited_deal_stage {
