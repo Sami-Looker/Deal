@@ -119,6 +119,7 @@ view: beneficiaries {
   }
 
   dimension: mothersname {
+    label: "Nome da mãe"
     hidden: no
     type: string
     sql: ${TABLE}."mothersname" ;;
