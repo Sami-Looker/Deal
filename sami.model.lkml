@@ -37,6 +37,12 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: pagamento {
+    type: left_outer
+    sql_on: ${pagamento.cnpj} =${deal.property_no_do_cnpj} ;;
+    relationship: one_to_one
+  }
+
   join: companies_addressinfo {
     type: left_outer
     sql_on: ${companies.address_info_fk} =${companies_addressinfo.id} ;;

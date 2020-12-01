@@ -563,6 +563,29 @@ view: deal{
     sql: ${contact.property_phone} ;;
   }
 
+  dimension: data_comp {
+    label: " Data de Compensação do Pagamento"
+    type: date
+    sql: ${pagamento.data_comp} ;;
+  }
+
+  dimension: data_pagto {
+    label: " Data Pagamento"
+    type: date
+    sql: ${pagamento.data_pagto} ;;
+  }
+
+  dimension: data_venc {
+    hidden: yes
+    type: date
+    sql: ${pagamento.data_venc} ;;
+  }
+  dimension: status {
+    label: "Status do Pagamento"
+    type: string
+    sql: ${pagamento.status} ;;
+  }
+
   ## Total Qualified Leads
   measure: count_total {
     alias: [count]
