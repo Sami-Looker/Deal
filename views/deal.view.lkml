@@ -570,7 +570,7 @@ view: deal{
   }
 
   dimension: data_pagto {
-    label: " Data Pagamento"
+    label: " Data do Pagamento"
     type: date
     sql: ${pagamento.data_pagto} ;;
   }
