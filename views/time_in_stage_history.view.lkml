@@ -34,8 +34,8 @@ view: time_in_stage_history {
   }
 
   dimension: deal_id {
-    hidden: yes
-    type: number
+    hidden: no
+    type: string
     sql: ${TABLE}.deal_id ;;
   }
 
@@ -97,6 +97,14 @@ view: time_in_stage_history {
     value_format_name: decimal_1
   }
 
+  measure:sum_days_in_deal_stage {
+    group_label: "Duration KPIs"
+    type: sum
+    sql: ${days_in_deal_stage} ;;
+    html: {{ rendered_value }} <span>days</span> ;;
+    value_format_name: decimal_1
+  }
+
   measure: median_days_in_deal_stage {
     group_label: "Duration KPIs"
     type: median
@@ -114,7 +122,7 @@ view: time_in_stage_history {
   measure: count_total_deals {
     alias: [count_distinct]
     type: count_distinct
-    sql:${deal_id};;
+    sql: ${deal_id};;
     drill_fields: [deal_id]
   }
 
