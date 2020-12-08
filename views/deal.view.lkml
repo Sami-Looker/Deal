@@ -599,6 +599,15 @@ view: deal{
     drill_fields: [dealname]
   }
 
+  dimension: status_do_membro {
+    type: string
+    sql:
+      CASE
+       WHEN (${data_pagamento} <= current_date and ${pagamento.data_comp} <= current_date) THEN 'Ativo'
+      END
+    ;;
+  }
+
   ## Create Filtered Measures
   measure: count_sql {
     label: "(1) Count SQL"
