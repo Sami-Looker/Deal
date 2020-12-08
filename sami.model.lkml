@@ -111,15 +111,13 @@ explore: deal {
     relationship: one_to_one
   }
 
-  join: time_in_macro_history {
-    view_label: "Time Macro History"
+  join: macro_status_history {
+    view_label: "Macro Status History"
     type: left_outer
-    sql_on: ${deal.deal_id} = ${time_in_macro_history.deal_id} ;;
+    sql_on: ${deal.deal_id} = ${macro_status_history.deal_id} ;;
     relationship: one_to_one
   }
-
   always_filter: {filters:[deal.is_deleted: "no"]
-
   }
 
 }

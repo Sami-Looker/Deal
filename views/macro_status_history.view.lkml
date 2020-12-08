@@ -1,18 +1,18 @@
-view: time_in_stage_history {
+include: "/base_views/deal_base.view"
+view: macro_status_history {
   label: "Deal History"
   derived_table: {
     indexes: ["deal_id"]
     sql:
       SELECT
-          dph.deal_id
-        , dps.label AS deal_stage
-        , dph.timestamp
-        , LEAD(dph.timestamp) OVER (PARTITION BY dph.deal_id ORDER BY dph.timestamp) AS exit_timestamp
-        , ROW_NUMBER() OVER (PARTITION BY dph.deal_id ORDER BY dph.timestamp) AS deal_stage_sequence
-      FROM hubspot.deal_property_history dph
-      LEFT JOIN hubspot.deal_pipeline_stage dps ON (dph.value = dps.stage_id)
-      WHERE dph.name = 'deal_pipeline_stage_id'
-      ORDER BY dph.deal_id
+          dh.deal_id
+        , dh.deal_macro_status
+        , dh.timestamp
+        , LEAD(dh.timestamp) OVER (PARTITION BY dh.deal_id ORDER BY dh.timestamp) AS exit_timestamp
+        , ROW_NUMBER() OVER (PARTITION BY dh.deal_id ORDER BY dh.timestamp) AS deal_stage_sequence
+      FROM hubspot.deal_history dh
+      WHERE dh.deal_stage_sequence = 1
+      ORDER BY dh.deal_id
     ;;
     persist_for: "30 minutes"
   }
@@ -32,15 +32,15 @@ view: time_in_stage_history {
 
   dimension: deal_id {
     hidden: yes
-    type: string
+    type: number
     sql: ${TABLE}.deal_id ;;
   }
 
   dimension: deal_stage {
-    label: "Deal Stage"
+    label: "Macro Status"
     hidden: no
     type: string
-    sql: ${TABLE}.deal_stage ;;
+    sql: ${TABLE}.deal_macro_status ;;
   }
 
   dimension: deal_stage_sequence {
@@ -67,7 +67,7 @@ view: time_in_stage_history {
     sql: ${exit_timestamp_raw} IS NOT NULL ;;
   }
 
-  dimension_group: in_deal_stage {
+  dimension_group: in_macro_status {
     type: duration
     sql_start: ${enter_timestamp_raw} ;;
     sql_end:
@@ -79,33 +79,25 @@ view: time_in_stage_history {
     intervals: [minute,hour,day]
   }
 
-  dimension: days_in_deal_stage_tier {
+  dimension: days_in_macro_status_tier {
     type: number
-    sql: ${days_in_deal_stage} ;;
+    sql: ${days_in_macro_status} ;;
     tiers: [1,2,3,4,5,6,7,8,9,10]
     style: integer
   }
 
-  measure: average_days_in_deal_stage {
+  measure: average_days_in_macro_status {
     group_label: "Duration KPIs"
     type: average
-    sql: ${days_in_deal_stage} ;;
+    sql: ${days_in_macro_status} ;;
     html: {{ rendered_value }} <span>days</span> ;;
     value_format_name: decimal_1
   }
 
-  measure:sum_days_in_deal_stage {
-    group_label: "Duration KPIs"
-    type: sum
-    sql: ${days_in_deal_stage} ;;
-    html: {{ rendered_value }} <span>days</span> ;;
-    value_format_name: decimal_1
-  }
-
-  measure: median_days_in_deal_stage {
+  measure: median_days_in_macro_status {
     group_label: "Duration KPIs"
     type: median
-    sql: ${days_in_deal_stage} ;;
+    sql: ${days_in_macro_status} ;;
     html: {{ rendered_value }} <span>days</span> ;;
     value_format_name: id
   }
@@ -119,8 +111,7 @@ view: time_in_stage_history {
   measure: count_total_deals {
     alias: [count_distinct]
     type: count_distinct
-    sql: ${deal_id};;
+    sql:${deal_id};;
     drill_fields: [deal_id]
   }
-
 }
