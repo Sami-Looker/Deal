@@ -37,7 +37,7 @@ view: macro_status_history {
   }
 
   dimension: deal_stage {
-    label: "Macro Status"
+    label: "Macro Status History"
     hidden: no
     type: string
     sql: ${TABLE}.deal_macro_status ;;
