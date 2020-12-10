@@ -54,7 +54,7 @@ view: beneficiaries {
   dimension: email {
     label: "e-mail"
     type: string
-    sql: ${TABLE}."email" ;;
+    sql: LOWER(${TABLE}."email") ;;
   }
 
   dimension: employeespecification {
