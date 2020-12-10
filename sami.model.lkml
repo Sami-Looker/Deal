@@ -25,9 +25,27 @@ explore: deal {
     relationship: many_to_one
   }
 
+  join: guia_membro {
+    type: left_outer
+    sql_on: ${beneficiaries.email} = ${guia_membro.email} ;;
+    relationship: one_to_one
+  }
+
   join: users {
     type: left_outer
     sql_on: ${beneficiaries.cpf} = ${users.cpf} ;;
+    relationship: one_to_one
+  }
+
+  join: data_de_contato_membro {
+    type: left_outer
+    sql_on: ${beneficiaries.cpf} = ${data_de_contato_membro.cpf} ;;
+    relationship: one_to_one
+  }
+
+  join: data_de_resposta_membro {
+    type: left_outer
+    sql_on: ${beneficiaries.cpf} = ${data_de_resposta_membro.cpf} ;;
     relationship: one_to_one
   }
 

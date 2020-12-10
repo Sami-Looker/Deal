@@ -159,55 +159,46 @@ view: beneficiaries {
     sql: ${TABLE}."validationdocument" ;;
   }
 
-  dimension: data_1_contato_do_time_de_saude_via_chat {
-    hidden: no
-    type: date
-    sql: ${novos_membros.data_1_contato_do_time_de_saude_via_chat} ;;
-  }
-  dimension: data_do_cadastro_no_app_do_membro {
-    hidden: yes
-    type: date
-    sql: ${novos_membros.data_do_cadastro_no_app_do_membro} ;;
-  }
-  dimension: disparo_da_pesquisa_de_pos_atendimento_embarque_ {
-    hidden: no
-    type: date
-    sql: ${novos_membros.disparo_da_pesquisa_de_pos_atendimento_embarque_} ;;
-  }
-  dimension: houve_resposta_ao_chat_do_time_clinico_ {
-    hidden: no
-    type: string
-    sql: ${novos_membros.houve_resposta_ao_chat_do_time_clinico_} ;;
-  }
-
-  dimension: pos_vendas_disparo_form_gympass_para_membro {
-    hidden: no
-    type: date
-    sql: ${novos_membros.pos_vendas_disparo_form_gympass_para_membro} ;;
-  }
-
-  dimension: status_do_embarque_clinico {
-    hidden: no
-    type: string
-    sql: ${novos_membros.status_do_embarque_clinico} ;;
-  }
-
   dimension: estimado_data_de_envio_de_push_no_app_no_membro {
     hidden: yes
     type: date
-    sql: ${data_1_contato_do_time_de_saude_via_chat} + INTERVAL '3 days';;
+    sql: ${data_de_contato_membro.createdat} + INTERVAL '3 days';;
   }
 
   dimension: estimado_data_de_envio_do_1_e_mail_mkt {
     hidden: yes
     type: date
-    sql: ${data_1_contato_do_time_de_saude_via_chat} + INTERVAL '3 days';;
+    sql: ${data_de_contato_membro.createdat} + INTERVAL '3 days';;
   }
 
   dimension: estimado_data_de_envio_do_2_e_mail_mkt {
     hidden: yes
     type: date
     sql: ${novos_membros.estimado_data_de_envio_do_1_e_mail_mkt} + INTERVAL '3 days';;
+  }
+
+  dimension: guia_membro {
+    label: "Data de envio do Guia do Membro"
+    hidden: no
+    type: date
+    sql: ${guia_membro.created_at};;
+  }
+
+  dimension: data_de_contato_membro {
+    label: "Data 1º contato do Time de Saúde via Chat"
+    hidden: no
+    type: date
+    sql: ${data_de_contato_membro.createdat};;
+  }
+
+  dimension: data_de_resposta_membro {
+    label: "Data resposta ao chat do Time Clínico"
+    hidden: no
+    type: date
+    sql: CASE
+           WHEN ${TABLE}."cpf" = '15355954855' THEN '2020-11-24'
+           ELSE ${data_de_resposta_membro.createdat}
+         END;;
   }
 
   dimension: address {

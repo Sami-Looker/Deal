@@ -1,7 +1,7 @@
 view: data_de_contato_membro {
-  label: "Deal History"
+  label: "data_de_contato_membro"
   derived_table: {
-    indexes: ["deal_id"]
+    indexes: ["cpf"]
     sql:
   SELECT *
   FROM(
@@ -24,5 +24,13 @@ view: data_de_contato_membro {
     type: string
     primary_key: yes
     hidden: yes
+    sql: ${TABLE}."cpf" ;;
+  }
+
+  dimension: createdat{
+    label: "Data 1º contato do Time de Saúde via Chat"
+    type: date
+    hidden: yes
+    sql: ${TABLE}."createdat" ;;
   }
 }
