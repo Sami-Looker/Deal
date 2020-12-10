@@ -159,18 +159,18 @@ view: beneficiaries {
     sql: ${TABLE}."validationdocument" ;;
   }
 
-  dimension: limite_time_clinico_sem_resposta {
+  dimension: limite_time_de_saude_sem_resposta {
     hidden: yes
     type: date
     sql: ${data_de_contato_membro.createdat} + INTERVAL '3 days';;
   }
 
-  dimension: flag_time_clinico_sem_resposta {
+  dimension: flag_time_de_saude_sem_resposta {
     hidden: no
     type: string
     sql:
      CASE
-           WHEN ((${limite_time_clinico_sem_resposta} <= CURRENT_DATE) and ${limite_time_clinico_sem_resposta} IS NOT NULL)
+           WHEN ((${limite_time_de_saude_sem_resposta} <= CURRENT_DATE) and ${limite_time_de_saude_sem_resposta} IS NOT NULL)
            AND
            (CASE
            WHEN ${TABLE}."cpf" = '15355954855' THEN '2020-11-24'
