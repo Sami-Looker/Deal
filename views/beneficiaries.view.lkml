@@ -159,22 +159,24 @@ view: beneficiaries {
     sql: ${TABLE}."validationdocument" ;;
   }
 
-  dimension: estimado_data_de_envio_de_push_no_app_no_membro {
+  dimension: limite_time_clinico_sem_resposta {
     hidden: yes
     type: date
     sql: ${data_de_contato_membro.createdat} + INTERVAL '3 days';;
   }
 
-  dimension: estimado_data_de_envio_do_1_e_mail_mkt {
-    hidden: yes
-    type: date
-    sql: ${data_de_contato_membro.createdat} + INTERVAL '3 days';;
-  }
-
-  dimension: estimado_data_de_envio_do_2_e_mail_mkt {
-    hidden: yes
-    type: date
-    sql: ${novos_membros.estimado_data_de_envio_do_1_e_mail_mkt} + INTERVAL '3 days';;
+  dimension: flag_time_clinico_sem_resposta {
+    hidden: no
+    type: string
+    sql:
+     CASE
+           WHEN ((${limite_time_clinico_sem_resposta} <= CURRENT_DATE) and ${limite_time_clinico_sem_resposta} IS NOT NULL)
+           AND
+           (CASE
+           WHEN ${TABLE}."cpf" = '15355954855' THEN '2020-11-24'
+           ELSE ${data_de_resposta_membro.createdat}
+         END) IS NULL THEN 'Sem Resposta por 3 dias ou mais'
+         END;;
   }
 
   dimension: guia_membro {
