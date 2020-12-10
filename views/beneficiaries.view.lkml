@@ -192,7 +192,7 @@ view: beneficiaries {
   }
 
   dimension: data_de_resposta_membro {
-    label: "Data resposta ao chat do Time Clínico"
+    label: "Data resposta ao chat do Time de Saúde"
     hidden: no
     type: date
     sql: CASE
