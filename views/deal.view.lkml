@@ -599,6 +599,12 @@ view: deal{
     drill_fields: [dealname]
   }
 
+  measure: avg_amount {
+    type: average
+    sql: ${amount} ;;
+    drill_fields: [dealname]
+  }
+
   dimension: status_do_membro {
     type: string
     sql:
