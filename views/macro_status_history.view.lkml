@@ -14,7 +14,7 @@ view: macro_status_history {
       WHERE dh.deal_stage_sequence = 1
       ORDER BY dh.deal_id
     ;;
-    persist_for: "30 minutes"
+    persist_for: "2 hours"
   }
 
   # S1->S2 T1
@@ -101,6 +101,8 @@ view: macro_status_history {
     html: {{ rendered_value }} <span>days</span> ;;
     value_format_name: id
   }
+
+
 
   measure: count_total {
     alias: [count]

@@ -17,7 +17,7 @@ view: data_de_resposta_membro {
       ) xx
   WHERE xx.primeira_data = '1'
           ;;
-      persist_for: "30 minutes"
+      persist_for: "2 hours"
     }
 
     dimension: cpf{
