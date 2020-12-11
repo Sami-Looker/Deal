@@ -193,6 +193,11 @@ view: beneficiaries {
     sql: ${data_de_contato_membro.createdat};;
   }
 
+  dimension: data_de_envio_para_o_gympass {
+    hidden: yes
+    sql: ${data_envio.data_de_envio_para_o_gympass};;
+  }
+
   dimension: data_de_resposta_membro {
     label: "Data resposta ao chat do Time de Saúde"
     hidden: no

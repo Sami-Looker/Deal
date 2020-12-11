@@ -70,6 +70,7 @@ view: deal{
     description: "This the monetary value of the deal."
     type: number
     sql: ${TABLE}."property_amount" ;;
+    html:<span>R$</span> {{ rendered_value }} ;;
   }
 
   dimension: amount_in_home_currency {
@@ -602,6 +603,7 @@ view: deal{
   measure: sum_amount {
     type: sum
     sql: ${amount} ;;
+    html:<span>R$</span> {{ rendered_value }} ;;
     drill_fields: [dealname]
   }
 
@@ -610,6 +612,7 @@ view: deal{
     sql: ${amount} ;;
     drill_fields: [dealname]
     value_format_name: decimal_1
+    html:<span>R$</span> {{ rendered_value }} ;;
   }
 
   dimension: status_do_membro {
