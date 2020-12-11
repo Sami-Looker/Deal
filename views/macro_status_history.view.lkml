@@ -4,19 +4,21 @@ view: macro_status_history {
   derived_table: {
     indexes: ["deal_id"]
     sql:
-      SELECT
-          dh.deal_id
-        , dh.deal_macro_status
-        , dh.timestamp
-        , LEAD(dh.timestamp) OVER (PARTITION BY dh.deal_id ORDER BY dh.timestamp) AS exit_timestamp
-        , ROW_NUMBER() OVER (PARTITION BY dh.deal_id ORDER BY dh.timestamp) AS deal_stage_sequence
-      FROM hubspot.deal_history dh
-      WHERE dh.deal_stage_sequence = 1
-      ORDER BY dh.deal_id
+       SELECT *
+  FROM(SELECT
+          dph.deal_id
+        , dps.macro_status AS deal_macro_status
+        , dph.timestamp
+        , LEAD(dph.timestamp) OVER (PARTITION BY dph.deal_id ORDER BY dph.timestamp) AS exit_timestamp
+        , ROW_NUMBER() OVER (PARTITION BY dph.deal_id || dps.macro_status ORDER BY dph.timestamp) AS deal_stage_sequence
+      FROM hubspot.deal_property_history dph
+      LEFT JOIN hubspot.deal_pipeline_stage dps ON (dph.value = dps.stage_id)
+      WHERE dph.name = 'deal_pipeline_stage_id'
+      ORDER BY dph.deal_id, dph.timestamp) xx
+      WHERE xx.deal_stage_sequence = 1
     ;;
     persist_for: "2 hours"
   }
-
   # S1->S2 T1
   # S2->S3 T2
   # S3->S2 T3
