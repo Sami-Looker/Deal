@@ -479,6 +479,12 @@ view: deal{
     sql: ${TABLE}."property_persona" ;;
   }
 
+  dimension: campanha {
+    label: "Campanha"
+    type: string
+    sql: ${TABLE}."property_campanha" ;;
+  }
+
   dimension: property_possui_cnpj_aberto_ {
     label: "Possui CNPJ Aberto"
     type: string
