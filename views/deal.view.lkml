@@ -603,6 +603,7 @@ view: deal{
     type: average
     sql: ${amount} ;;
     drill_fields: [dealname]
+    value_format_name: decimal_1
   }
 
   dimension: status_do_membro {
