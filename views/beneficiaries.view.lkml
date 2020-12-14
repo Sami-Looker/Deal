@@ -198,6 +198,13 @@ view: beneficiaries {
     sql: ${data_envio.data_de_envio_para_o_gympass};;
   }
 
+  dimension: data_primeira_videoconferencia {
+    label: "Data da 1º Videoconferencia"
+    hidden: no
+    type: date
+    sql: ${data_primeira_videoconferencia.createdat};;
+  }
+
   dimension: data_de_resposta_membro {
     label: "Data resposta ao chat do Time de Saúde"
     hidden: no

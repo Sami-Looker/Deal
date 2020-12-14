@@ -7,7 +7,7 @@ view: deal{
   drill_fields: [dealname]
 
   dimension: deal_id {
-    hidden: yes
+    hidden: no
     primary_key: yes
     type: number
     sql: ${TABLE}."deal_id" ;;

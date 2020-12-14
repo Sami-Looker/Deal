@@ -96,6 +96,14 @@ view: macro_status_history {
     value_format_name: decimal_1
   }
 
+  measure: sum_days_in_macro_status {
+    group_label: "Duration KPIs"
+    type: sum
+    sql: ${days_in_macro_status} ;;
+    html: {{ rendered_value }} <span>days</span> ;;
+    value_format_name: decimal_1
+  }
+
   measure: median_days_in_macro_status {
     group_label: "Duration KPIs"
     type: median

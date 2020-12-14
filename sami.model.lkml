@@ -43,6 +43,13 @@ explore: deal {
     relationship: one_to_one
   }
 
+
+  join: data_primeira_videoconferencia {
+    type: left_outer
+    sql_on: ${beneficiaries.cpf} = ${data_primeira_videoconferencia.cpf} ;;
+    relationship: one_to_one
+  }
+
   join: data_de_resposta_membro {
     type: left_outer
     sql_on: ${beneficiaries.cpf} = ${data_de_resposta_membro.cpf} ;;
