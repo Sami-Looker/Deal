@@ -619,7 +619,9 @@ view: deal{
     type: string
     sql:
       CASE
-       WHEN (${data_pagamento} <= current_date and ${pagamento.data_comp} <= current_date and ${pagamento.status} = 'Faturado') THEN 'Ativo' else 'Inativo'
+       WHEN (${pagamento.status} = 'Cancelado') THEN 'Cancelado'
+       WHEN (${data_pagamento} <= current_date and ${pagamento.data_comp} <= current_date and ${pagamento.status} = 'Faturado') THEN 'Ativo'
+      ELSE 'Inativo'
       END
     ;;
   }
