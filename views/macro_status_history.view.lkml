@@ -112,8 +112,6 @@ view: macro_status_history {
     value_format_name: id
   }
 
-
-
   measure: count_total {
     alias: [count]
     type: count
