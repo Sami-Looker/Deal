@@ -1,10 +1,10 @@
 connection: "sami_dw"
-persist_for: "2 hours"
+persist_for: "6 hours"
 include: "/views/**/*.view"
 
 explore: deal {
   label: "Deals"
-  persist_for: "2 hours"
+  persist_for: "6 hours"
   join: deal_company {
     # view_label: "Company"
     type: left_outer
