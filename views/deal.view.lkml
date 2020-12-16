@@ -13,9 +13,13 @@ view: deal{
     sql: ${TABLE}."deal_id" ;;
   }
 
-  dimension: data_pagamento {
+  dimension_group: data_pagamento {
     label: "Data de Vigência"
-    type: date
+    type: time
+    timeframes: [
+      raw,
+      date,
+      month,]
     sql: ${TABLE}."data_pagamento" ;;
   }
 
@@ -620,7 +624,7 @@ view: deal{
     sql:
       CASE
        WHEN (${pagamento.status} = 'Cancelado') THEN 'Cancelado'
-       WHEN (${data_pagamento} <= current_date and ${pagamento.data_comp} <= current_date and ${pagamento.status} = 'Faturado') THEN 'Ativo'
+       WHEN (${data_pagamento_date} <= current_date and ${pagamento.data_comp} <= current_date and ${pagamento.status} = 'Faturado') THEN 'Ativo'
       ELSE 'Inativo'
       END
     ;;
