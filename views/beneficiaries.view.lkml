@@ -159,7 +159,19 @@ view: beneficiaries {
     sql: ${TABLE}."validationdocument" ;;
   }
 
+  dimension: limite_time_de_saude_3 {
+    hidden: yes
+    type: date
+    sql: ${data_de_contato_membro.createdat} + INTERVAL '3 days';;
+  }
+
   dimension: limite_time_de_saude_sem_resposta {
+    hidden: yes
+    type: date
+    sql: ${data_de_contato_membro.createdat} + INTERVAL '3 days';;
+  }
+
+  dimension: limite_time_de_saude_7 {
     hidden: yes
     type: date
     sql: ${data_de_contato_membro.createdat} + INTERVAL '3 days';;
@@ -176,6 +188,17 @@ view: beneficiaries {
            WHEN ${TABLE}."cpf" = '15355954855' THEN '2020-11-24'
            ELSE ${data_de_resposta_membro.createdat}
          END) IS NULL THEN 'Sem Resposta por 3 dias ou mais'
+         END;;
+  }
+
+  dimension: flag_escolha_time_de_saude {
+    hidden: no
+    type: string
+    sql:
+     CASE
+           WHEN ((${limite_time_de_saude_sem_resposta} <= CURRENT_DATE) and ${limite_time_de_saude_sem_resposta} IS NOT NULL)
+           AND
+           IS NULL THEN 'Sem Resposta por 3 dias ou mais'
          END;;
   }
 
