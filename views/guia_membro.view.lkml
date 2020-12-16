@@ -11,7 +11,7 @@ view: guia_membro {
       LEFT JOIN hubspot_mkt.engagement e ON (ea.engagement_id = e.id)
       WHERE ea.subject = 'Guia do Membro Sami'
         ;;
-    persist_for: "30 minutes"
+    persist_for: "2 hours"
   }
 
   dimension: email{
