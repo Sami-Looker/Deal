@@ -106,6 +106,7 @@ view: deal{
     timeframes: [
       raw,
       time,
+      hour,
       date,
       week,
       month,
