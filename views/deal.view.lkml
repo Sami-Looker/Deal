@@ -78,6 +78,7 @@ view: deal{
   }
 
   dimension: amount_in_home_currency {
+    hidden: yes
     label: "Amount in Home Currency"
     group_label: "Amounts"
     type: number
