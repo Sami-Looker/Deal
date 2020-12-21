@@ -5,11 +5,11 @@ view: macro_status_history {
     indexes: ["deal_id"]
     sql:
        SELECT *
+      , LEAD(xx.timestamp) OVER (PARTITION BY xx.deal_id ORDER BY xx.timestamp) AS exit_timestamp
   FROM(SELECT
           dph.deal_id
         , dps.macro_status AS deal_macro_status
         , dph.timestamp
-        , LEAD(dph.timestamp) OVER (PARTITION BY dph.deal_id ORDER BY dph.timestamp) AS exit_timestamp
         , ROW_NUMBER() OVER (PARTITION BY dph.deal_id || dps.macro_status ORDER BY dph.timestamp) AS deal_stage_sequence
       FROM hubspot.deal_property_history dph
       LEFT JOIN hubspot.deal_pipeline_stage dps ON (dph.value = dps.stage_id)
