@@ -4,9 +4,11 @@ view: macro_status_history {
   derived_table: {
     indexes: ["deal_id"]
     sql:
-       SELECT *
+    SELECT *
+      , ROW_NUMBER() OVER (PARTITION BY xy.deal_id ORDER BY xy.exit_timestamp) AS macro_status_sequence
+      FROM(SELECT *
       , LEAD(xx.timestamp) OVER (PARTITION BY xx.deal_id ORDER BY xx.timestamp) AS exit_timestamp
-  FROM(SELECT
+       FROM(SELECT
           dph.deal_id
         , dps.macro_status AS deal_macro_status
         , dph.timestamp
@@ -15,7 +17,7 @@ view: macro_status_history {
       LEFT JOIN hubspot.deal_pipeline_stage dps ON (dph.value = dps.stage_id)
       WHERE dph.name = 'deal_pipeline_stage_id'
       ORDER BY dph.deal_id, dph.timestamp) xx
-      WHERE xx.deal_stage_sequence = 1
+      WHERE xx.deal_stage_sequence = 1)xy
     ;;
     persist_for: "2 hours"
   }
