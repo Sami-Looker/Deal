@@ -150,4 +150,11 @@ explore: deal {
   always_filter: {filters:[deal.is_deleted: "no"]
   }
 
+  join: deal_stage_facts {
+    view_label: "Macro Status Facts"
+    type: left_outer
+    sql_on: ${deal.deal_id} = ${deal_stage_facts.deal_id} ;;
+    relationship: one_to_one
+  }
+
 }

@@ -76,7 +76,7 @@ view: beneficiaries {
   }
 
   dimension: graceperiodtype {
-    label: "Paríodo de Carência"
+    label: "Período de Carência"
     type: string
     sql: ${TABLE}."graceperiodtype" ;;
   }
@@ -106,7 +106,7 @@ view: beneficiaries {
   }
 
   dimension: kinship {
-    label: "Patentesco"
+    label: "Parentesco"
     type: string
     sql: ${TABLE}."kinship" ;;
   }
