@@ -132,7 +132,7 @@ view: beneficiaries {
 
   dimension: phonenumber {
     type: string
-    sql: ${TABLE}."phonenumber" ;;
+    sql: Replace(${TABLE}."phonenumber",'+55','') ;;
   }
 
   dimension: planid {
