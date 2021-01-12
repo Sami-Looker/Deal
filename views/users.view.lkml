@@ -40,7 +40,7 @@ view: users {
 
   dimension: beneficiaryid {
     label: "N° Carteirinha"
-    hidden: no
+    hidden: yes
     type: string
     sql: ${TABLE}."beneficiaryid" ;;
   }
