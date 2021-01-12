@@ -1,4 +1,5 @@
 view: beneficiaries {
+  label: "Membros"
   sql_table_name: hiring.beneficiaries ;;
   drill_fields: [id]
 
@@ -304,6 +305,13 @@ view: beneficiaries {
     hidden: no
     type: date
     sql: ${users.createdat} ;;
+  }
+
+  dimension: beneficiaryid {
+    label: "N° Carteirinha"
+    hidden: no
+    type: string
+    sql: ${users.beneficiaryid} ;;
   }
 
   dimension: careteamid {
