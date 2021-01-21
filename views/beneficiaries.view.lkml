@@ -71,7 +71,7 @@ view: beneficiaries {
   }
 
   dimension: gender {
-    label: "Genêro"
+    label: "Gênero"
     type: string
     sql: ${TABLE}."gender" ;;
   }
