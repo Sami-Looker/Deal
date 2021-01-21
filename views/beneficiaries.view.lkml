@@ -37,6 +37,14 @@ view: beneficiaries {
     html: {{ rendered_value | date: "%d/%m/%Y" }};;
   }
 
+  dimension: birthdate3 {
+    group_label: "Data de Nascimento"
+    label: "Formato MM/DD/YYYY"
+    type: date
+    sql: to_date(${TABLE}."birthdate",'DDMMYYYY') ;;
+    html: {{ rendered_value | date: "%m/%d/%Y" }};;
+  }
+
   dimension:Age {
     label: "Idade"
     type: number
@@ -136,8 +144,24 @@ view: beneficiaries {
   }
 
   dimension: name {
+    group_label: "Nome"
+    label: "Nome completo"
     type: string
     sql: ${TABLE}."name" ;;
+  }
+
+  dimension: first_name{
+    group_label: "Nome"
+    label: "Primeiro Nome"
+    type: string
+    sql: split_part(${name},' ',1) ;;
+  }
+
+  dimension: last_name{
+    group_label: "Nome"
+    label: "Sobrenome"
+    type: string
+    sql: Concat(split_part(${name},' ',2),' ',split_part(${name},' ',3),' ',split_part(${name},' ',4),' ',split_part(${name},' ',5),' ',split_part(${name},' ',6),' ',split_part(${name},' ',7)) ;;
   }
 
   dimension: phonenumber {
