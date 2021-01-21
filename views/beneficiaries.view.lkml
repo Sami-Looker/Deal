@@ -23,7 +23,15 @@ view: beneficiaries {
   }
 
   dimension: birthdate {
-    label: "Data de Nascimento"
+    group_label: "Data de Nascimento"
+    label: "Formato 1"
+    type: date
+    sql: to_date(${TABLE}."birthdate",'DDMMYYYY') ;;
+  }
+
+  dimension: birthdate2 {
+    group_label: "Data de Nascimento"
+    label: "Formato 2"
     type: date
     sql: to_date(${TABLE}."birthdate",'DDMMYYYY') ;;
     html: {{ rendered_value | date: "%d/%m/%Y" }};;
