@@ -24,14 +24,14 @@ view: beneficiaries {
 
   dimension: birthdate {
     group_label: "Data de Nascimento"
-    label: "Formato 1"
+    label: "Formato YYYY-MM-DD"
     type: date
     sql: to_date(${TABLE}."birthdate",'DDMMYYYY') ;;
   }
 
   dimension: birthdate2 {
     group_label: "Data de Nascimento"
-    label: "Formato 2"
+    label: "Formato DD/MM/YYYY"
     type: date
     sql: to_date(${TABLE}."birthdate",'DDMMYYYY') ;;
     html: {{ rendered_value | date: "%d/%m/%Y" }};;
