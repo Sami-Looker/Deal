@@ -26,6 +26,7 @@ view: beneficiaries {
     label: "Data de Nascimento"
     type: date
     sql: to_date(${TABLE}."birthdate",'DDMMYYYY') ;;
+    html: {{ rendered_value | date: "%m/%d/%Y" }};;
   }
 
   dimension:Age {
