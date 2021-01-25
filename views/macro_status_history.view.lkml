@@ -4,19 +4,18 @@ view: macro_status_history {
   derived_table: {
     indexes: ["deal_id"]
     sql:
-    SELECT *
-      , ROW_NUMBER() OVER (PARTITION BY xy.deal_id ORDER BY xy.exit_timestamp) AS macro_status_sequence
+SELECT *
+      , ROW_NUMBER() OVER (PARTITION BY xy.deal_id ORDER BY xy.date_entered) AS macro_status_sequence
       FROM(SELECT *
-      , LEAD(xx.timestamp) OVER (PARTITION BY xx.deal_id ORDER BY xx.timestamp) AS exit_timestamp
+      , LEAD(xx.date_entered) OVER (PARTITION BY xx.deal_id ORDER BY xx.date_entered) AS exit_timestamp
        FROM(SELECT
-          dph.deal_id
+          ds.deal_id
         , dps.macro_status AS deal_macro_status
-        , dph.timestamp
-        , ROW_NUMBER() OVER (PARTITION BY dph.deal_id || dps.macro_status ORDER BY dph.timestamp) AS deal_stage_sequence
-      FROM hubspot.deal_property_history dph
-      LEFT JOIN hubspot.deal_pipeline_stage dps ON (dph.value = dps.stage_id)
-      WHERE dph.name = 'deal_pipeline_stage_id'
-      ORDER BY dph.deal_id, dph.timestamp) xx
+        , ds.date_entered
+        , ROW_NUMBER() OVER (PARTITION BY ds.deal_id || dps.macro_status ORDER BY ds.date_entered) AS deal_stage_sequence
+      FROM hubspot_t.deal_stage ds
+      LEFT JOIN hubspot_t.deal_pipeline_stage dps ON (ds.value = dps.stage_id)
+      ORDER BY ds.deal_id, ds.date_entered) xx
       WHERE xx.deal_stage_sequence = 1)xy
     ;;
     persist_for: "2 hours"

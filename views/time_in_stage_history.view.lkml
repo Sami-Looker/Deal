@@ -4,15 +4,14 @@ view: time_in_stage_history {
     indexes: ["deal_id"]
     sql:
       SELECT
-          dph.deal_id
+          ds.deal_id
         , dps.label AS deal_stage
-        , dph.timestamp
-        , LEAD(dph.timestamp) OVER (PARTITION BY dph.deal_id ORDER BY dph.timestamp) AS exit_timestamp
-        , ROW_NUMBER() OVER (PARTITION BY dph.deal_id ORDER BY dph.timestamp) AS deal_stage_sequence
-      FROM hubspot.deal_property_history dph
-      LEFT JOIN hubspot.deal_pipeline_stage dps ON (dph.value = dps.stage_id)
-      WHERE dph.name = 'deal_pipeline_stage_id'
-      ORDER BY dph.deal_id
+        , ds.date_entered
+        , LEAD(ds.date_entered) OVER (PARTITION BY ds.deal_id ORDER BY ds.date_entered) AS exit_timestamp
+        , ROW_NUMBER() OVER (PARTITION BY ds.deal_id ORDER BY ds.date_entered) AS deal_stage_sequence
+      FROM hubspot_t.deal_stage ds
+      LEFT JOIN hubspot_t.deal_pipeline_stage dps ON (ds.value = dps.stage_id)
+      ORDER BY ds.deal_id
     ;;
     persist_for: "2 hours"
   }
