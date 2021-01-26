@@ -7,9 +7,9 @@ view: guia_membro {
       et.email
     , e. created_at
     , ea.subject
-      FROM hubspot_mkt.engagement_email ea
-      LEFT JOIN hubspot_mkt.engagement_email_to et ON (ea.engagement_id = et.engagement_id)
-      LEFT JOIN hubspot_mkt.engagement e ON (ea.engagement_id = e.id)
+      FROM hubspot_mkt_t.engagement_email ea
+      LEFT JOIN hubspot_mkt_t.engagement_email_to et ON (ea.engagement_id = et.engagement_id)
+      LEFT JOIN hubspot_mkt_t.engagement e ON (ea.engagement_id = e.id)
       WHERE ea.subject = 'Guia do Membro Sami'
         ;;
     persist_for: "2 hours"
