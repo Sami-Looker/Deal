@@ -54,7 +54,7 @@ SELECT *
 
   dimension_group: enter_timestamp {
     type: time
-    sql: ${TABLE}.timestamp ;;
+    sql: ${TABLE}.date_entered ;;
     timeframes: [raw,date,week,month,year]
   }
 

@@ -230,9 +230,8 @@ view: beneficiaries {
     type: string
     sql:
      CASE
-           WHEN ((${limite_time_de_saude_sem_resposta} <= CURRENT_DATE) and ${limite_time_de_saude_sem_resposta} IS NOT NULL)
-           AND
-           IS NULL THEN 'Sem Resposta por 3 dias ou mais'
+           WHEN (((${guia_membro.created_at} + INTERVAL '7 days') <= CURRENT_DATE) and ${users.careteamid} IS NULL)
+           THEN 'Sem Escolha por 7 dias ou mais'
          END;;
   }
 
