@@ -136,6 +136,8 @@ view: beneficiaries {
     sql: ${TABLE}."memberid" ;;
   }
 
+
+
   dimension: mothersname {
     label: "Nome da mãe"
     hidden: no
@@ -344,6 +346,10 @@ view: beneficiaries {
     hidden: no
     type: string
     sql: ${users.beneficiaryid} ;;
+    link: {
+      label: "Dashboard do Membro"
+      url: "https://sami.cloud.looker.com/dashboards-next/25?N%C2%B0+Carteirinha={{value}}"
+    }
   }
 
   dimension: careteamid {
