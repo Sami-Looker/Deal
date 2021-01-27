@@ -136,7 +136,7 @@ view: beneficiaries {
   }
 
   dimension: memberid {
-    hidden: yes
+    label: "N° Carteirinha"
     type: number
     value_format_name: id
     sql: ${TABLE}."memberid" ;;
@@ -347,7 +347,7 @@ view: beneficiaries {
 
   dimension: beneficiaryid {
     label: "N° Carteirinha"
-    hidden: no
+    hidden: yes
     type: string
     sql: ${users.beneficiaryid} ;;
     link: {

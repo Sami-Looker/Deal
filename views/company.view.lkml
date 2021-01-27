@@ -103,6 +103,7 @@ view: company {
   }
 
   dimension: description {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_description" ;;
   }
@@ -556,6 +557,7 @@ view: company {
   }
 
   dimension: number_of_employees {
+    hidden: yes
     type: number
     sql: ${TABLE}."property_numberofemployees" ;;
   }

@@ -56,7 +56,7 @@ explore: deal {
   }
 
   join: companies {
-    type: left_outer
+    type: full_outer
     sql_on: ${companies.cnpj} =${deal.property_no_do_cnpj} ;;
     relationship: one_to_one
   }
