@@ -176,9 +176,8 @@ view: beneficiaries {
   }
 
   dimension: planid {
-    hidden: yes
+    label: "ID Plano Escolhido"
     type: string
-    # hidden: yes
     sql: ${TABLE}."planid" ;;
   }
 
