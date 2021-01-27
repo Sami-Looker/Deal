@@ -70,6 +70,7 @@ view: deal{
 
   dimension: amount {
     group_label: "Amounts"
+    hidden: yes
     label: "Amount"
     description: "This the monetary value of the deal."
     type: number
@@ -198,6 +199,7 @@ view: deal{
   }
 
   dimension: hs_closed_amount {
+    hidden: yes
     label: "Closed Amount"
     group_label: "Amounts"
     type: number
@@ -205,6 +207,7 @@ view: deal{
   }
 
   dimension: hs_closed_amount_in_home_currency {
+    hidden: yes
     label: "Closed Amount in Home Currency"
     group_label: "Amounts"
     type: number
@@ -576,20 +579,26 @@ view: deal{
     sql: ${contact.property_phone} ;;
   }
 
+  dimension: valor {
+    label: "Valor"
+    type: number
+    sql: ${pagamento.valor} ;;
+  }
+
   dimension: data_comp {
-    label: " Data de Compensação do Pagamento"
+    label: "Data de Compensação do Pagamento"
     type: date
     sql: ${pagamento.data_comp} ;;
   }
 
   dimension: data_pagto {
-    label: " Data do Pagamento"
+    label: "Data do Pagamento"
     type: date
     sql: ${pagamento.data_pagto} ;;
   }
 
   dimension: data_venc {
-    hidden: yes
+    label: " Data de Vencimento do Pagamento"
     type: date
     sql: ${pagamento.data_venc} ;;
   }
@@ -608,14 +617,14 @@ view: deal{
 
   measure: sum_amount {
     type: sum
-    sql: ${amount} ;;
+    sql: ${valor} ;;
     html:<span>R$</span> {{ rendered_value }} ;;
     drill_fields: [dealname]
   }
 
   measure: avg_amount {
     type: average
-    sql: ${amount} ;;
+    sql: ${valor} ;;
     drill_fields: [dealname]
     value_format_name: decimal_1
     html:<span>R$</span> {{ rendered_value }} ;;
@@ -626,7 +635,7 @@ view: deal{
     sql:
       CASE
        WHEN (${pagamento.status} = 'Cancelado') THEN 'Cancelado'
-       WHEN (${data_pagamento_date} <= current_date and ${pagamento.data_comp} <= current_date and ${pagamento.status} = 'Faturado') THEN 'Ativo'
+       WHEN (${data_pagamento_date} <= current_date and ${pagamento.data_comp} <= current_date) THEN 'Ativo'
       ELSE 'Inativo'
       END
     ;;

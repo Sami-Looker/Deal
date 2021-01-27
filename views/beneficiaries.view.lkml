@@ -93,6 +93,12 @@ view: beneficiaries {
     sql: ${TABLE}."gender" ;;
   }
 
+  dimension: name_plans {
+    label: "Plano Escolhido"
+    type: string
+    sql: ${plans.name} ;;
+  }
+
   dimension: graceperiodtype {
     label: "Período de Carência"
     type: string
@@ -135,8 +141,6 @@ view: beneficiaries {
     value_format_name: id
     sql: ${TABLE}."memberid" ;;
   }
-
-
 
   dimension: mothersname {
     label: "Nome da mãe"

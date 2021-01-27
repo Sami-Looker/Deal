@@ -20,7 +20,7 @@ explore: deal {
   }
 
   join: beneficiaries {
-    type: left_outer
+    type: full_outer
     sql_on: ${beneficiaries.companyid} = ${companies._id} ;;
     relationship: many_to_one
   }
@@ -77,12 +77,6 @@ explore: deal {
     type: left_outer
     sql_on: ${companies.address_info_fk} =${companies_addressinfo.id} ;;
     relationship: one_to_one
-  }
-
-  join: novos_membros {
-    type: left_outer
-    sql_on: ${novos_membros.nome}=${beneficiaries.name} ;;
-    relationship: many_to_many
   }
 
   join: deal_contact {
@@ -155,6 +149,12 @@ explore: deal {
     type: left_outer
     sql_on: ${deal.deal_id} = ${deal_stage_facts.deal_id} ;;
     relationship: one_to_one
+  }
+
+  join: plans {
+    type: left_outer
+    sql_on: ${beneficiaries.planid} = ${plans._id} ;;
+    relationship: many_to_one
   }
 
 }
