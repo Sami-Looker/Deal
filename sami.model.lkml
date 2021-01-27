@@ -20,7 +20,7 @@ explore: deal {
   }
 
   join: beneficiaries {
-    type: full_outer
+    type: left_outer
     sql_on: ${beneficiaries.companyid} = ${companies._id} ;;
     relationship: many_to_one
   }
