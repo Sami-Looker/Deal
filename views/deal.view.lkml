@@ -130,9 +130,16 @@ view: deal{
   }
 
   dimension: formapagamento{
+    hidden: yes
     label: "Forma de Pagamento"
     type: string
     sql: ${TABLE}."property_forma_de_pagamento" ;;
+  }
+
+  dimension: tipo_cobranca {
+    label: "Forma de Pagamento"
+    type: string
+    sql: ${pagamento.tipo_cobranca} ;;
   }
 
   dimension: property_deal_currency_code {
