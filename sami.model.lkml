@@ -32,7 +32,7 @@ explore: deal {
   }
 
   join: users {
-    type: left_outer
+    type: full_outer
     sql_on: ${beneficiaries.cpf} = ${users.cpf} ;;
     relationship: one_to_one
   }
