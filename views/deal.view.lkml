@@ -13,16 +13,6 @@ view: deal{
     sql: ${TABLE}."deal_id" ;;
   }
 
-  dimension_group: data_pagamento {
-    label: "Data de Vigência"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      month,]
-    sql: ${TABLE}."data_pagamento" ;;
-  }
-
   dimension_group: _fivetran_synced {
     hidden: yes
     type: time
@@ -596,6 +586,28 @@ view: deal{
     label: "Data de Compensação do Pagamento"
     type: date
     sql: ${pagamento.data_comp} ;;
+  }
+
+  dimension: data_vig {
+    label: "Status da Vigência"
+    type: string
+    sql:CASE
+WHEN (${pagamento.data_vig} IS NULL) THEN  'Planejado'
+ELSE 'Confirmado'
+END ;;
+  }
+
+  dimension_group: data_pagamento {
+    label: "Data de Vigência"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      month,]
+    sql: CASE
+            WHEN (${pagamento.data_vig} IS NULL) THEN  ${TABLE}."data_pagamento"
+            ELSE ${pagamento.data_vig}
+         END;;
   }
 
   dimension: data_pagto {

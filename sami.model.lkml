@@ -37,6 +37,24 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: contact_mkt {
+    type: left_outer
+    sql_on: ${beneficiaries.cpf} = ${contact_mkt.property_cpf} ;;
+    relationship: one_to_one
+  }
+
+  join: ticket_contact {
+    type: left_outer
+    sql_on: ${ticket_contact.contact_id} = ${contact_mkt.id} ;;
+    relationship: one_to_one
+  }
+
+  join: ticket {
+    type: left_outer
+    sql_on: ${ticket_contact.ticket_id} = ${ticket.id} ;;
+    relationship: one_to_one
+  }
+
   join: data_de_contato_membro {
     type: left_outer
     sql_on: ${beneficiaries.cpf} = ${data_de_contato_membro.cpf} ;;

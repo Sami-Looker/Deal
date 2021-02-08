@@ -40,6 +40,12 @@ view: pagamento {
     sql: ${TABLE}."data_comp" ;;
   }
 
+  dimension: data_vig {
+    hidden: yes
+    type: date
+    sql: ${TABLE}."data_vig" ;;
+  }
+
   dimension: data_pagto {
     hidden: yes
     type: date
