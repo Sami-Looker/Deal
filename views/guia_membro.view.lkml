@@ -11,6 +11,14 @@ view: guia_membro {
       LEFT JOIN hubspot_mkt_t.engagement_email_to et ON (ea.engagement_id = et.engagement_id)
       LEFT JOIN hubspot_mkt_t.engagement e ON (ea.engagement_id = e.id)
       WHERE ea.subject = 'Guia do Membro Sami'
+    Union all
+      SELECT
+      ee.recipient
+    , ee.CREATED
+    , es.subject
+      FROM hubspot_mkt_t.email_event_sent es
+      LEFT JOIN hubspot_mkt_t.email_event ee ON (es.id = ee.id)
+      WHERE es.subject = 'Você chegou! \o/'
         ;;
     persist_for: "2 hours"
   }
