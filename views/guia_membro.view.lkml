@@ -18,7 +18,7 @@ view: guia_membro {
     , es.subject
       FROM hubspot_mkt_t.email_event_sent es
       LEFT JOIN hubspot_mkt_t.email_event ee ON (es.id = ee.id)
-      WHERE es.subject = 'Você chegou! \o/'
+      WHERE es.subject = 'Você chegou! \o/' or es.subject = 'Você chegou! | Guia do Membro Sami'
         ;;
     persist_for: "2 hours"
   }
