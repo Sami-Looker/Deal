@@ -1,5 +1,5 @@
 view: company {
-  sql_table_name: hubspot_t.company ;;
+  sql_table_name: hubspot_.company ;;
   drill_fields: [id]
 
   dimension: id {

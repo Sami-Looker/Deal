@@ -7,17 +7,17 @@ view: guia_membro {
       et.email
     , e. created_at
     , ea.subject
-      FROM hubspot_mkt_t.engagement_email ea
-      LEFT JOIN hubspot_mkt_t.engagement_email_to et ON (ea.engagement_id = et.engagement_id)
-      LEFT JOIN hubspot_mkt_t.engagement e ON (ea.engagement_id = e.id)
+      FROM hubspot_mkt_.engagement_email ea
+      LEFT JOIN hubspot_mkt_.engagement_email_to et ON (ea.engagement_id = et.engagement_id)
+      LEFT JOIN hubspot_mkt_.engagement e ON (ea.engagement_id = e.id)
       WHERE ea.subject = 'Guia do Membro Sami'
     Union all
       SELECT
       ee.recipient
     , ee.CREATED
     , es.subject
-      FROM hubspot_mkt_t.email_event_sent es
-      LEFT JOIN hubspot_mkt_t.email_event ee ON (es.id = ee.id)
+      FROM hubspot_mkt_.email_event_sent es
+      LEFT JOIN hubspot_mkt_.email_event ee ON (es.id = ee.id)
       WHERE es.subject = 'Você chegou! \o/' or es.subject = 'Você chegou! | Guia do Membro Sami'
         ;;
     persist_for: "2 hours"

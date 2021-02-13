@@ -257,11 +257,6 @@ view: beneficiaries {
     sql: ${data_de_contato_membro.createdat};;
   }
 
-  dimension: data_de_envio_para_o_gympass {
-    hidden: yes
-    sql: ${data_envio.data_de_envio_para_o_gympass};;
-  }
-
   dimension: data_primeira_videoconferencia {
     label: "Data da 1º Videoconferencia"
     hidden: no
