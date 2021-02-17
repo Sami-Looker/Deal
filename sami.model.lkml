@@ -3,6 +3,7 @@ persist_for: "6 hours"
 include: "/views/**/*.view"
 
 explore: deal {
+  persist_for: "1 hours"
   label: "Deals"
   join: deal_company {
     # view_label: "Company"
