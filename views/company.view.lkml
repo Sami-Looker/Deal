@@ -1,5 +1,5 @@
 view: company {
-  label: "Empresa"
+  label: "Empresas"
   sql_table_name: hubspot_.company ;;
   drill_fields: [id]
 
