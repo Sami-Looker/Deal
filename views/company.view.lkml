@@ -1,4 +1,5 @@
 view: company {
+  label: "Empresa"
   sql_table_name: hubspot_.company ;;
   drill_fields: [id]
 
@@ -485,7 +486,6 @@ view: company {
 
   dimension: name {
     hidden: yes
-
     type: string
     sql: ${TABLE}."property_name" ;;
   }
@@ -659,6 +659,7 @@ view: company {
   }
 
   dimension: cnpj {
+    label: "CNPJ"
     hidden: no
     type: string
     sql: ${companies.cnpj} ;;
@@ -673,7 +674,7 @@ view: company {
     sql: ${companies.founded} ;;
   }
   dimension: Nome {
-    label: "Company Name"
+    label: "Nome"
     type: string
     sql: ${companies.name} ;;
   }
