@@ -516,10 +516,10 @@ view: deal{
     sql: ${TABLE}."property_qual_tipo_de_cnpj_" ;;
   }
 
-  dimension: property_quantidade_de_vidas {
+  dimension: vidas {
     label: "Qtd. de Vidas"
     type: number
-    sql: ${TABLE}."property_quantidade_de_vidas" ;;
+    sql: ${vidas.count} ;;
   }
 
   dimension: status_do_contratante {

@@ -756,4 +756,8 @@ view: company {
     sql: Concat(${companies_addressinfo.address},', ', ${companies_addressinfo.number},' - ',${companies_addressinfo.complement},' - ',${companies_addressinfo.district}, ' - CEP ',${companies_addressinfo.zipcode}) ;;
   }
 
+  measure: count {
+    type: count
+  }
+
 }

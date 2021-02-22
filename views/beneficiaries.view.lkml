@@ -90,7 +90,7 @@ view: beneficiaries {
   dimension: gender {
     label: "Gênero"
     type: string
-    sql: ${TABLE}."gender" ;;
+    sql: lower(${TABLE}."gender") ;;
   }
 
   dimension: name_plans {

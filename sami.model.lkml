@@ -135,7 +135,8 @@ explore: deal {
     sql_on: ${deal.deal_id} = ${macro_status_history.deal_id} ;;
     relationship: one_to_one
   }
-  always_filter: {filters:[deal.is_deleted: "no"]
+
+  always_filter: {filters:[deal.is_deleted: "no",beneficiaries.isactive: "true"]
   }
 
   join: deal_stage_facts {
@@ -151,4 +152,9 @@ explore: deal {
     relationship: many_to_one
   }
 
+  join: vidas {
+    type: left_outer
+    sql_on: ${vidas.property_no_do_cnpj} = ${deal.property_no_do_cnpj} ;;
+    relationship: one_to_one
+  }
 }
