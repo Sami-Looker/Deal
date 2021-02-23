@@ -145,6 +145,12 @@ view: companies {
     sql: ${TABLE}."legal_nature_fk" ;;
   }
 
+  dimension: legal_nature_description {
+    hidden: yes
+    type: string
+    sql: ${TABLE}."legal_nature_description" ;;
+  }
+
   dimension: maps_fk {
     hidden: yes
     type: number

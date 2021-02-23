@@ -102,7 +102,10 @@ view: beneficiaries {
   dimension: graceperiodtype {
     label: "Período de Carência"
     type: string
-    sql: ${TABLE}."graceperiodtype" ;;
+    sql: Case
+        when ${TABLE}."graceperiodtype" = 'Redução de carência' then 'Redução de Carência'
+        else ${TABLE}."graceperiodtype"
+        end;;
   }
 
   dimension: healthplan {
@@ -333,6 +336,24 @@ view: beneficiaries {
     group_label: "Location"
     type: string
     sql: Concat(${users.address},', ', ${users.addressnumber},' - ',${users.complement},' - ',${users.district}, ' - CEP ',${users.zipcode}) ;;
+  }
+
+  dimension: latitude {
+    group_label: "Location"
+    type: number
+    sql: ${life_locations.latitude} ;;
+  }
+  dimension: longitude {
+    group_label: "Location"
+    type: number
+    sql: ${life_locations.longitude} ;;
+  }
+
+   dimension: location {
+    group_label: "Location"
+    type: location
+    sql_latitude: ${life_locations.latitude} ;;
+    sql_longitude: ${life_locations.longitude};;
   }
 
   dimension: createdat {

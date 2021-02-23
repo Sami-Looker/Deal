@@ -157,4 +157,17 @@ explore: deal {
     sql_on: ${vidas.property_no_do_cnpj} = ${deal.property_no_do_cnpj} ;;
     relationship: one_to_one
   }
+
+  join: life_locations {
+    type: left_outer
+    sql_on: ${life_locations.life_id} = ${lives.id} ;;
+    relationship: one_to_one
+  }
+
+  join: lives {
+    type: left_outer
+    sql_on: ${lives.document_identification_primary} = ${beneficiaries.cpf} ;;
+    relationship: one_to_one
+  }
+
 }

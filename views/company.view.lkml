@@ -756,6 +756,24 @@ view: company {
     sql: Concat(${companies_addressinfo.address},', ', ${companies_addressinfo.number},' - ',${companies_addressinfo.complement},' - ',${companies_addressinfo.district}, ' - CEP ',${companies_addressinfo.zipcode}) ;;
   }
 
+  dimension: legal_nature_description {
+    label: "Natureza legal"
+    type: string
+    sql:CASE
+       WHEN ${companies.legal_nature_description} = 'Associação Privada' THEN 'A/P'
+       WHEN ${companies.legal_nature_description} = 'Empresa Individual de Responsabilidade Limitada (de Natureza Empresári' THEN 'EIRELI'
+       WHEN ${companies.legal_nature_description} = 'Empresário (Individual)' THEN 'EI'
+       WHEN ${companies.legal_nature_description} = 'Sociedade Anônima Fechada' THEN 'S/A'
+       WHEN ${companies.legal_nature_description} = 'Sociedade Empresária Limitada' THEN 'Empresária LTDA'
+       WHEN ${companies.legal_nature_description} = 'Sociedade Simples Limitada' THEN 'Simples LTDA'
+       WHEN ${companies.legal_nature_description} = 'Sociedade Simples Pura' THEN 'SSP'
+       WHEN ${companies.legal_nature_description} = 'Sociedade Unipessoal de Advogados' THEN 'SUA'
+       WHEN ${companies.legal_nature_description} = 'Órgão de Direção Regional de Partido Político' THEN 'ODRPP'
+      WHEN ${companies.legal_nature_description} = 'Empresa Individual de Responsabilidade Limitada (de Natureza Empresária)' THEN 'EIRELI'
+      WHEN ${companies.legal_nature_description} = 'Empresa Individual de Responsabilidade Limitada (de Natureza Simples)' THEN 'EIRELI'
+        END ;;
+  }
+
   measure: count {
     type: count
   }
