@@ -31,6 +31,18 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: video_tds {
+    type: left_outer
+    sql_on: ${beneficiaries.email} = ${video_tds.email} ;;
+    relationship: one_to_one
+  }
+
+  join: download_app {
+    type: left_outer
+    sql_on: ${beneficiaries.email} = ${download_app.email} ;;
+    relationship: one_to_one
+  }
+
   join: users {
     type: full_outer
     sql_on: ${beneficiaries.cpf} = ${users.cpf} ;;
@@ -136,7 +148,7 @@ explore: deal {
     relationship: one_to_one
   }
 
-  always_filter: {filters:[deal.is_deleted: "no",beneficiaries.isactive: "true"]
+  always_filter: {filters:[deal.is_deleted: "no"]
   }
 
   join: deal_stage_facts {

@@ -116,7 +116,6 @@ SELECT *
   measure: count_total {
     alias: [count]
     type: count
-    drill_fields: [deal_id]
   }
 
   measure: count_total_deals {

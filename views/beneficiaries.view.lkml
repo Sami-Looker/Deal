@@ -253,6 +253,20 @@ view: beneficiaries {
     sql: ${guia_membro.created_at};;
   }
 
+  dimension: video_tds {
+    label: "Data de envio Alerta Videochamada"
+    hidden: no
+    type: date
+    sql: ${video_tds.created_at};;
+  }
+
+  dimension: download_app {
+    label: "Data de envio Alerta Download App"
+    hidden: no
+    type: date
+    sql: ${download_app.created_at};;
+  }
+
   dimension: data_de_contato_membro {
     label: "Data 1º contato do Time de Saúde via Chat"
     hidden: no
