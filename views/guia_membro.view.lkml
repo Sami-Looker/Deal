@@ -3,7 +3,16 @@ view: guia_membro {
   derived_table: {
     indexes: ["email"]
     sql:
-      SELECT
+      SELECT *
+FROM
+(SELECT *
+      , ROW_NUMBER() OVER (PARTITION BY xy.email ORDER BY xy.created_at) AS email_sequence
+      FROM(Select
+xx.email
+,xx.created_at
+,xx.subject
+FROM
+(SELECT
       et.email
     , e. created_at
     , ea.subject
@@ -18,7 +27,9 @@ view: guia_membro {
     , es.subject
       FROM hubspot_mkt_.email_event_sent es
       LEFT JOIN hubspot_mkt_.email_event ee ON (es.id = ee.id)
-      WHERE es.subject = 'Você chegou! \o/' or es.subject = 'Você chegou! | Guia do Membro Sami'
+      WHERE es.subject = 'Você chegou! \o/' or es.subject = 'Você chegou! | Guia do Membro Sami') xx
+      Order by 1,2)xy)xz
+      WHERE xz.email_sequence = 1
         ;;
     persist_for: "2 hours"
   }
