@@ -31,7 +31,6 @@ FROM
       Order by 1,2)xy)xz
       WHERE xz.email_sequence = 1
         ;;
-    persist_for: "2 hours"
   }
 
   dimension: email{
