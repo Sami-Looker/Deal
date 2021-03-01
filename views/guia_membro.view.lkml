@@ -1,5 +1,4 @@
 view: guia_membro {
-  label: "Alertas enviados"
   derived_table: {
     indexes: ["email"]
     sql:
