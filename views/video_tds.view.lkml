@@ -15,17 +15,17 @@ FROM
       et.email
     , e. created_at
     , ea.subject
-      FROM hubspot_mkt_.engagement_email ea
-      LEFT JOIN hubspot_mkt_.engagement_email_to et ON (ea.engagement_id = et.engagement_id)
-      LEFT JOIN hubspot_mkt_.engagement e ON (ea.engagement_id = e.id)
+      FROM mkt_hubspot.engagement_email ea
+      LEFT JOIN mkt_hubspot.engagement_email_to et ON (ea.engagement_id = et.engagement_id)
+      LEFT JOIN mkt_hubspot.engagement e ON (ea.engagement_id = e.id)
       WHERE ea.subject = 'Convite: videochamada com o Time de Saúde.'
     Union all
       SELECT
       ee.recipient
     , ee.CREATED
     , es.subject
-      FROM hubspot_mkt_.email_event_sent es
-      LEFT JOIN hubspot_mkt_.email_event ee ON (es.id = ee.id)
+      FROM mkt_hubspot.email_event_sent es
+      LEFT JOIN mkt_hubspot.email_event ee ON (es.id = ee.id)
       WHERE es.subject = 'Convite: videochamada com o Time de Saúde.') xx
       Order by 1,2)xy)xz
       WHERE xz.email_sequence = 1
