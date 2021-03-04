@@ -182,8 +182,9 @@ view: companies {
   }
 
   dimension: primary_activity_description {
+    hidden: yes
   label: "Atividade Primaria"
-    type: number
+    type: string
     sql: ${TABLE}."primary_activity_description" ;;
   }
 

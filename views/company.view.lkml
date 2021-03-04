@@ -58,6 +58,12 @@ view: company {
     sql: ${TABLE}."property_city" ;;
   }
 
+  dimension: primary_activity_description {
+    label: "Atividade Primaria"
+    type: string
+    sql: ${companies.primary_activity_description} ;;
+  }
+
   dimension_group: property_closedate {
     hidden: yes
     label: "Close Date"
