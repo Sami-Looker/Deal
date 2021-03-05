@@ -579,20 +579,20 @@ view: deal{
   dimension: valor {
     label: "Valor"
     type: number
-    sql: ${pagamento.valor} ;;
+    sql: ${contracts.cost} ;;
   }
 
   dimension: data_comp {
     label: "Data de Compensação do Pagamento"
     type: date
-    sql: ${pagamento.data_comp} ;;
+    sql: ${contracts.payment} ;;
   }
 
   dimension: data_vig {
     label: "Status da Vigência"
     type: string
     sql:CASE
-WHEN (${pagamento.data_vig} IS NULL) THEN  'Planejado'
+WHEN (${contracts.start} IS NULL) THEN  'Planejado'
 ELSE 'Confirmado'
 END ;;
   }
@@ -605,21 +605,21 @@ END ;;
       date,
       month,]
     sql: CASE
-            WHEN (${pagamento.data_vig} IS NULL) THEN  ${TABLE}."data_pagamento"
-            ELSE ${pagamento.data_vig}
+            WHEN (${contracts.start} IS NULL) THEN  ${TABLE}."data_pagamento"
+            ELSE ${contracts.start}
          END;;
   }
 
   dimension: data_pagto {
     label: "Data do Pagamento"
     type: date
-    sql: ${pagamento.data_pagto} ;;
+    sql: ${contracts.payment} ;;
   }
 
   dimension: data_venc {
     label: " Data de Vencimento do Pagamento"
     type: date
-    sql: ${pagamento.data_venc} ;;
+    sql: ${contracts.next_payment} ;;
   }
   dimension: status {
     label: "Status do Pagamento"
@@ -654,7 +654,7 @@ END ;;
     sql:
       CASE
        WHEN (${pagamento.status} = 'Cancelado') THEN 'Cancelado'
-       WHEN (${data_pagamento_date} <= current_date and ${pagamento.data_comp} <= current_date) THEN 'Ativo'
+       WHEN (${contracts.start} <= current_date and ${contracts.payment} <= current_date) THEN 'Ativo'
       ELSE 'Inativo'
       END
     ;;

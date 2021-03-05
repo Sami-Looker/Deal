@@ -25,6 +25,12 @@ explore: deal {
     relationship: many_to_one
   }
 
+  join: contracts {
+    type: left_outer
+    sql_on: ${companies_dw.id} = ${contracts.company_contractor_company_id} ;;
+    relationship: one_to_one
+  }
+
   join: guia_membro {
     type: left_outer
     sql_on: ${beneficiaries.email} = ${guia_membro.email} ;;
@@ -70,6 +76,12 @@ explore: deal {
   join: companies {
     type: full_outer
     sql_on: ${companies.cnpj} =${deal.property_no_do_cnpj} ;;
+    relationship: one_to_one
+  }
+
+  join: companies_dw {
+    type: left_outer
+    sql_on: ${companies_dw.document_identification_primary} =${deal.property_no_do_cnpj} ;;
     relationship: one_to_one
   }
 
