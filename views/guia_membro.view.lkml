@@ -2,7 +2,7 @@ view: guia_membro {
   derived_table: {
     indexes: ["email"]
     sql:
-     SELECT *
+    SELECT *
 FROM
 (SELECT *
       , ROW_NUMBER() OVER (PARTITION BY xy.email ORDER BY xy.created_at) AS email_sequence
@@ -26,7 +26,7 @@ FROM
     , es.subject
       FROM mkt_hubspot.email_event_sent es
       LEFT JOIN mkt_hubspot.email_event ee ON (es.id = ee.id)
-      WHERE es.subject = 'Você chegou! \o/' or es.subject = 'Você chegou! | Guia do Membro Sami') xx
+      WHERE es.subject = 'Você chegou! \o/' or es.subject = 'Você chegou! | Guia do Membro Sami'or es.subject = 'Você chegou! | Veja seu Guia do Membro Sami.') xx
       Order by 1,2)xy)xz
       WHERE xz.email_sequence = 1
         ;;
