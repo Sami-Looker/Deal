@@ -641,6 +641,7 @@ END ;;
     sql:
       CASE
        WHEN (${contracts.start} <= current_date and ${contracts.payment} <= current_date) THEN 'Sim'
+       WHEN ${contracts.start} <= current_date and ${contracts.payment} IS NULL THEN 'Pagamento atrasado'
       ELSE 'Não'
       END
     ;;
@@ -650,7 +651,10 @@ END ;;
   dimension: status_source_value {
     label: "Status do Membro"
     type: string
-    sql: ${beneficiaries_dw.status_source_value} ;;
+    sql: CASE
+       WHEN ${beneficiaries_dw.status_source_value} IS NULL THEN 'Não consta no DW'
+       ELSE ${beneficiaries_dw.status_source_value}
+       END;;
   }
 
   ## Create Filtered Measures
