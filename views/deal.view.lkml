@@ -641,7 +641,6 @@ END ;;
     sql:
       CASE
        WHEN (${contracts.start} <= current_date and ${contracts.payment} <= current_date) THEN 'Sim'
-       WHEN ${beneficiaries.Age} < 18 THEN 'N/A'
       ELSE 'Não'
       END
     ;;
