@@ -32,4 +32,10 @@ view: contracts {
     type:date
     sql: ${TABLE}."start_at" ;;
   }
+
+  dimension: payment_method_concept_id {
+    hidden: yes
+    type:number
+    sql: ${TABLE}."payment_method_concept_id" ;;
+  }
 }

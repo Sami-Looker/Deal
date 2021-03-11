@@ -194,4 +194,10 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: beneficiaries_dw {
+    type: left_outer
+    sql_on: ${lives.id} = ${beneficiaries_dw.life_id} ;;
+    relationship: one_to_one
+  }
+
 }

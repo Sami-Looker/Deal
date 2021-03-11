@@ -119,17 +119,14 @@ view: deal{
     sql: ${TABLE}."property_dealname" ;;
   }
 
-  dimension: formapagamento{
-    hidden: yes
-    label: "Forma de Pagamento"
-    type: string
-    sql: ${TABLE}."property_forma_de_pagamento" ;;
-  }
-
   dimension: tipo_cobranca {
     label: "Forma de Pagamento"
     type: string
-    sql: ${pagamento.tipo_cobranca} ;;
+    sql: CASE
+            WHEN ${contracts.payment_method_concept_id} = 3 then 'Boleto'
+            WHEN ${contracts.payment_method_concept_id} = 5 then 'Cartão de Crédito'
+            ELSE NULL
+         END;;
   }
 
   dimension: property_deal_currency_code {
@@ -582,12 +579,6 @@ view: deal{
     sql: ${contracts.cost} ;;
   }
 
-  dimension: data_comp {
-    label: "Data de Compensação do Pagamento"
-    type: date
-    sql: ${contracts.payment} ;;
-  }
-
   dimension: data_vig {
     label: "Status da Vigência"
     type: string
@@ -621,11 +612,6 @@ END ;;
     type: date
     sql: ${contracts.next_payment} ;;
   }
-  dimension: status {
-    label: "Status do Pagamento"
-    type: string
-    sql: ${pagamento.status} ;;
-  }
 
   ## Total Qualified Leads
   measure: count_total {
@@ -649,15 +635,23 @@ END ;;
     html:<span>R$</span> {{ rendered_value }} ;;
   }
 
-  dimension: status_do_membro {
+  dimension: elegibilidade_do_membro {
+    label: "Elegibilidade para Ativação"
     type: string
     sql:
       CASE
-       WHEN (${pagamento.status} = 'Cancelado') THEN 'Cancelado'
-       WHEN (${contracts.start} <= current_date and ${contracts.payment} <= current_date) THEN 'Ativo'
-      ELSE 'Inativo'
+       WHEN (${contracts.start} <= current_date and ${contracts.payment} <= current_date) THEN 'Sim'
+       WHEN ${beneficiaries.Age} < 18 THEN 'N/A'
+      ELSE 'Não'
       END
     ;;
+  }
+
+
+  dimension: status_source_value {
+    label: "Status do Membro"
+    type: string
+    sql: ${beneficiaries_dw.status_source_value} ;;
   }
 
   ## Create Filtered Measures

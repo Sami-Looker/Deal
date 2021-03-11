@@ -188,6 +188,11 @@ view: companies {
     sql: ${TABLE}."primary_activity_description" ;;
   }
 
+  dimension: primary_activity_code {
+    hidden: yes
+    type: number
+    sql: ${TABLE}."primary_activity_code" ;;
+  }
 
   dimension: registration_fk {
     hidden: yes
