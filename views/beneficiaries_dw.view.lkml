@@ -79,4 +79,11 @@ view: beneficiaries_dw {
     type: string
     sql: ${TABLE}."status_source_value" ;;
   }
+
+  dimension: cost {
+    hidden: yes
+    type: number
+    sql: ${TABLE}."cost" ;;
+  }
+
 }

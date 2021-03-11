@@ -392,6 +392,13 @@ view: beneficiaries {
     sql: ${users.careteamid} ;;
   }
 
+  dimension: cost {
+    label: "Valor por Membro"
+    hidden: no
+    type: number
+    sql: ${beneficiaries_dw.cost} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, name, mothersname, plans.id, plans.name]
