@@ -653,6 +653,7 @@ END ;;
     type: string
     sql: CASE
        WHEN ${beneficiaries_dw.status_source_value} IS NULL THEN 'Não consta no DW'
+       WHEN ${beneficiaries.Age} < 18 THEN 'N/A'
        ELSE ${beneficiaries_dw.status_source_value}
        END;;
   }
