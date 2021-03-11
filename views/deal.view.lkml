@@ -595,10 +595,7 @@ END ;;
       raw,
       date,
       month,]
-    sql: CASE
-            WHEN (${contracts.start} IS NULL) THEN  ${TABLE}."data_pagamento"
-            ELSE ${contracts.start}
-         END;;
+    sql: ${contracts.start};;
   }
 
   dimension: data_pagto {
