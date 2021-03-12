@@ -520,6 +520,7 @@ view: deal{
   }
 
   dimension: status_do_contratante {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_status_do_contratante" ;;
   }
