@@ -781,15 +781,15 @@ view: company {
   }
 
   dimension: primary_activity_code_secao {
-    label: "Seção"
-    hidden: yes
+    label: "Seção CNAE"
+    hidden: no
     type: string
     sql: ${companies.primary_activity_code_secao};;
   }
 
     dimension: primary_activity_code_divisao {
-      label: "Divisão"
-      hidden: yes
+      label: "Divisão CNAE"
+      hidden: no
       type: string
       sql: ${companies.primary_activity_code_divisao};;
   }
