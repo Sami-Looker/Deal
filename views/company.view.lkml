@@ -780,6 +780,20 @@ view: company {
         END ;;
   }
 
+  dimension: primary_activity_code_secao {
+    label: "Seção"
+    hidden: yes
+    type: string
+    sql: ${companies.primary_activity_code_secao};;
+  }
+
+    dimension: primary_activity_code_divisao {
+      label: "Divisão"
+      hidden: yes
+      type: string
+      sql: ${companies.primary_activity_code_divisao};;
+  }
+
   measure: count {
     type: count
   }
