@@ -1,5 +1,5 @@
 view: contact {
-  sql_table_name:_hubspot.contact ;;
+  sql_table_name:g_hubspot.contact ;;
   drill_fields: [id]
 
   dimension: id {

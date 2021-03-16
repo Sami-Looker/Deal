@@ -100,12 +100,10 @@ view: beneficiaries {
   }
 
   dimension: graceperiodtype {
-    label: "Período de Carência"
+    group_label: "Períodos de Carência"
+    label: "Grupo de Carência"
     type: string
-    sql: Case
-        when ${TABLE}."graceperiodtype" = 'Redução de carência' then 'Redução de Carência'
-        else ${TABLE}."graceperiodtype"
-        end;;
+    sql: ${grace_types.name};;
   }
 
   dimension: healthplan {
@@ -177,6 +175,7 @@ view: beneficiaries {
   }
 
   dimension: phonenumber {
+    label: "Celular"
     type: string
     sql: Replace(${TABLE}."phonenumber",'+55','') ;;
   }
@@ -397,6 +396,38 @@ view: beneficiaries {
     hidden: no
     type: number
     sql: ${beneficiaries_dw.cost} ;;
+  }
+
+  dimension: grace {
+    label: "Tipos de Carência"
+    group_label: "Períodos de Carência"
+    type: string
+    sql: Case
+when ${grace_period.grace} = 'grace_period_appointment' THEN 'Dias de carência de consulta'
+when ${grace_period.grace} = 'grace_period_exam' THEN 'Dias de carência de exame'
+when ${grace_period.grace} = 'grace_period_hospitalization' THEN 'Dias de carência de hospitalização'
+when ${grace_period.grace} = 'grace_period_childbirth' THEN 'Dias de carência de parto'
+when ${grace_period.grace} = 'grace_period_elective_surgeries' THEN 'Dias de carência de cirurgias'
+when ${grace_period.grace} = 'grace_period_exam_special' THEN 'Dias de carência de exames especiais'
+when ${grace_period.grace} = 'grace_period_therapy' THEN 'Dias de carência de terapia'
+when ${grace_period.grace} = 'grace_period_ambulatory_procedures' THEN 'Dias de carência de procedimento ambulatoriais'
+when ${grace_period.grace} = 'grace_period_pre_existing_diseases' THEN 'Dias de carência de doenças pré existentes'
+end
+;;
+  }
+
+  dimension: grace_period_appointment {
+    label: "Dias de Carência"
+    group_label: "Períodos de Carência"
+    type: number
+    sql:${grace_period.days} ;;
+  }
+
+  dimension: cpt {
+    label: "CPT"
+    group_label: "Períodos de Carência"
+    type: string
+    sql:${cpt.answer} ;;
   }
 
   measure: count {

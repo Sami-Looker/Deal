@@ -194,10 +194,27 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: cpt {
+    type: left_outer
+    sql_on: ${cpt.cpf} = ${beneficiaries.cpf} ;;
+    relationship: many_to_one
+  }
+
   join: beneficiaries_dw {
     type: left_outer
     sql_on: ${lives.id} = ${beneficiaries_dw.life_id} ;;
     relationship: one_to_one
   }
 
+  join: grace_period {
+    type: left_outer
+    sql_on: ${grace_period.id} = ${beneficiaries_dw.grace_type_id} ;;
+    relationship: one_to_one
+  }
+
+  join: grace_types {
+    type: left_outer
+    sql_on: ${grace_types.id} = ${beneficiaries_dw.grace_type_id} ;;
+    relationship: one_to_one
+  }
 }
