@@ -26,7 +26,7 @@ FROM
     , es.subject
       FROM mktn_hubspot.email_event_sent es
       LEFT JOIN mktn_hubspot.email_event ee ON (es.id = ee.id)
-      WHERE es.subject = 'Você chegou! \o/' or es.subject = 'Você chegou! | Guia do Membro Sami'or es.subject = 'Você chegou! | Veja seu Guia do Membro Sami.') xx
+      WHERE es.subject = 'Você chegou! \o/' or es.subject = 'Você chegou! | Guia do Membro Sami'or es.subject = 'Você chegou! | Veja seu Guia do Membro Sami.' or es.subject = 'Seu Guia do Membro Sami chegou!') xx
       Order by 1,2)xy)xz
       WHERE xz.email_sequence = 1
         ;;

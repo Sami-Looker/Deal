@@ -15,4 +15,16 @@ view: lives {
     sql: ${TABLE}."document_identification_primary" ;;
   }
 
+  dimension: health_card_number {
+    hidden: yes
+    type: string
+    sql: ${TABLE}."health_card_number" ;;
+  }
+
+  dimension: birth_at {
+    hidden: yes
+    type: date
+    sql: ${TABLE}."birth_at" ;;
+  }
+
 }

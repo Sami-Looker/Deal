@@ -14,4 +14,10 @@ view: companies_dw {
     type: string
     sql: ${TABLE}."document_identification_primary" ;;
   }
+
+  dimension: national_simple {
+    hidden: yes
+    type: string
+    sql: ${TABLE}."national_simple" ;;
+  }
 }

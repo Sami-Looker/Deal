@@ -780,6 +780,16 @@ view: company {
         END ;;
   }
 
+  dimension: national_simple {
+    label: "Simples Nacional"
+    hidden: no
+    type: string
+    sql: CASE
+    WHEN ${companies_dw.national_simple}= 'True' THEN 'Sim'
+    else 'Não'
+    end;;
+  }
+
   dimension: primary_activity_code_secao {
     label: "Seção CNAE"
     hidden: no

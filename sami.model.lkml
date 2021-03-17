@@ -111,6 +111,27 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: ticket {
+    view_label: "Contact"
+    type: left_outer
+    sql_on: ${ticket.id} = ${ticket_contact.ticket_id} ;;
+    relationship: one_to_one
+  }
+
+  join: ticket_contact {
+    view_label: "Contact"
+    type: left_outer
+    sql_on: ${ticket_contact.contact_id} = ${contact_mkt.id} ;;
+    relationship: one_to_one
+  }
+
+  join: contact_mkt {
+    view_label: "Contact"
+    type: left_outer
+    sql_on: ${contact_mkt.property_cpf} = ${beneficiaries.cpf} ;;
+    relationship: one_to_one
+  }
+
   join: deal_pipeline {
     view_label: "Deal Pipeline"
     type: left_outer
@@ -190,7 +211,7 @@ explore: deal {
 
   join: lives {
     type: left_outer
-    sql_on: ${lives.document_identification_primary} = ${beneficiaries.cpf} ;;
+    sql_on: ${lives.health_card_number} = ${beneficiaries.memberid} ;;
     relationship: one_to_one
   }
 

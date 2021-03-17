@@ -653,7 +653,6 @@ END ;;
     label: "Status do Membro"
     type: string
     sql: CASE
-       WHEN ${beneficiaries.Age} < 18 THEN 'N/A'
        WHEN ${beneficiaries_dw.status_source_value} IS NULL THEN 'Não consta no DW'
        ELSE ${beneficiaries_dw.status_source_value}
        END;;

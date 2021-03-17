@@ -26,14 +26,14 @@ view: beneficiaries {
     group_label: "Data de Nascimento"
     label: "Formato YYYY-MM-DD"
     type: date
-    sql: to_date(${TABLE}."birthdate",'DDMMYYYY') ;;
+    sql: ${lives.birth_at} ;;
   }
 
   dimension: birthdate2 {
     group_label: "Data de Nascimento"
     label: "Formato DD/MM/YYYY"
     type: date
-    sql: to_date(${TABLE}."birthdate",'DDMMYYYY') ;;
+    sql: ${lives.birth_at} ;;
     html: {{ rendered_value | date: "%d/%m/%Y" }};;
   }
 
@@ -41,7 +41,7 @@ view: beneficiaries {
     group_label: "Data de Nascimento"
     label: "Formato MM/DD/YYYY"
     type: date
-    sql: to_date(${TABLE}."birthdate",'DDMMYYYY') ;;
+    sql: ${lives.birth_at} ;;
     html: {{ rendered_value | date: "%m/%d/%Y" }};;
   }
 
@@ -428,6 +428,83 @@ end
     group_label: "Períodos de Carência"
     type: string
     sql:${cpt.answer} ;;
+  }
+
+  dimension: id_t {
+    label: "ID Hubspot"
+    group_label: "Ticket de Atendimento"
+    hidden: no
+    type: string
+    sql: ${ticket.id} ;;
+    link: {
+      label: "Hubspot"
+      url: "https://app.hubspot.com/contacts/8341620/ticket/{{value}}"
+    }
+  }
+
+  dimension: property_content {
+    group_label: "Ticket de Atendimento"
+    label: "Conteúdo do Atendimento"
+    hidden: no
+    type: string
+    sql: ${ticket.property_content} ;;
+  }
+
+  dimension: property_createdate {
+    group_label: "Ticket de Atendimento"
+    label: "Data de Criacao do Ticket"
+    hidden: no
+    type: date
+    sql: ${ticket.property_createdate} ;;
+  }
+
+  dimension: property_motivo {
+    group_label: "Ticket de Atendimento"
+    hidden: yes
+    type: string
+    sql: ${ticket.property_motivo} ;;
+  }
+
+  dimension: property_motivo_do_contato {
+    group_label: "Ticket de Atendimento"
+    label: "Motivo do Contato"
+    hidden: no
+    type: string
+    sql: CASE
+            WHEN ${ticket.property_motivo_do_contato} IS NULL THEN ${ticket.property_motivo}
+            ELSE ${ticket.property_motivo_do_contato}
+            end;;
+  }
+
+  dimension: property_satisfacao {
+    group_label: "Ticket de Atendimento"
+    label: "Satisfação"
+    hidden: no
+    type: string
+    sql: ${ticket.property_satisfacao} ;;
+  }
+
+  dimension: property_source_type {
+    group_label: "Ticket de Atendimento"
+    label: "Tipo de Atendimento"
+    type: string
+    sql: ${ticket.property_source_type} ;;
+  }
+
+  dimension: property_sub_motivo {
+    group_label: "Ticket de Atendimento"
+    label: "Submotivo do Contato"
+    hidden:no
+    type: string
+    sql: ${ticket.property_sub_motivo} ;;
+  }
+
+  dimension: property_subject {
+    group_label: "Ticket de Atendimento"
+    label: "Assunto"
+    hidden: no
+    type: string
+    sql: ${ticket.property_subject} ;;
   }
 
   measure: count {
