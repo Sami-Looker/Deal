@@ -507,6 +507,18 @@ end
     sql: ${ticket.property_subject} ;;
   }
 
+  dimension: son {
+    label: "Possui Filho?"
+    type: string
+    sql:${parentesco.son};;
+  }
+
+    dimension: spouse {
+      label: "Casado?"
+      type: string
+      sql:${parentesco.spouse};;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, name, mothersname, plans.id, plans.name]

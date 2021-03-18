@@ -28,6 +28,7 @@ view: deal{
     sql: ${TABLE}."_fivetran_synced" ;;
   }
 
+
   dimension: deal_pipeline_id {
     hidden: yes
     type: string
@@ -648,6 +649,11 @@ END ;;
     ;;
   }
 
+  dimension: para_quem_contratou {
+    type: string
+    label: "Para quem contratou?"
+    sql: ${motivo_contratacao.para_quem_contratou} ;;
+  }
 
   dimension: status_source_value {
     label: "Status do Membro"

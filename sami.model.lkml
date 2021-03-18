@@ -61,6 +61,12 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: parentesco {
+    type: left_outer
+    sql_on: ${beneficiaries.cpf} = ${parentesco.cpf} ;;
+    relationship: one_to_one
+  }
+
   join: data_primeira_videoconferencia {
     type: left_outer
     sql_on: ${beneficiaries.cpf} = ${data_primeira_videoconferencia.cpf} ;;
@@ -76,6 +82,12 @@ explore: deal {
   join: companies {
     type: full_outer
     sql_on: ${companies.cnpj} =${deal.property_no_do_cnpj} ;;
+    relationship: one_to_one
+  }
+
+  join: motivo_contratacao {
+    type: full_outer
+    sql_on: ${motivo_contratacao.cnpj} = ${companies.cnpj} ;;
     relationship: one_to_one
   }
 
