@@ -74,6 +74,12 @@ view: beneficiaries_dw {
     sql: ${TABLE}."life_id" ;;
   }
 
+  dimension: id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}."id" ;;
+  }
+
   dimension: status_source_value {
     hidden: yes
     type: string
