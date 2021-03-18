@@ -80,6 +80,7 @@ view: ticket {
   }
 
   dimension: property_source_type {
+    hidden: yes
     type: string
     sql: ${TABLE}."property_source_type" ;;
   }

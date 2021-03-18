@@ -27,4 +27,5 @@ view: lives {
     sql: ${TABLE}."birth_at" ;;
   }
 
+
 }
