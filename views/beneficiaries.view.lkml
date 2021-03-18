@@ -22,6 +22,16 @@ view: beneficiaries {
     sql: ${TABLE}."_id" ;;
   }
 
+  dimension: classificacao {
+    label: "Classificação do Membro"
+    type: string
+    sql: CAse
+    WHEN ${companies.name} = 'SAMI ASSISTENCIA MEDICA LTDA' THEN 'Samer'
+    ELSE 'Contratante'
+      END ;;
+  }
+
+
   dimension: birthdate {
     group_label: "Data de Nascimento"
     label: "Formato YYYY-MM-DD"

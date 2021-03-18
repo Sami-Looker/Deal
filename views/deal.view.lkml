@@ -28,6 +28,12 @@ view: deal{
     sql: ${TABLE}."_fivetran_synced" ;;
   }
 
+  dimension: empresa_Nome {
+    hidden: yes
+    label: "Nome"
+    type: string
+    sql: ${companies.name} ;;
+  }
 
   dimension: deal_pipeline_id {
     hidden: yes

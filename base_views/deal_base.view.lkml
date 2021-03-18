@@ -30,6 +30,7 @@ view: deal_base {
        WHEN ${deal_stage} = 'Qualificado com contato' THEN 'SQL'
        WHEN ${deal_stage} = 'Carta de interesse assinada' THEN 'Cotação'
        WHEN ${deal_stage} = 'Sem contato' THEN 'SQL'
+       WHEN ${empresa_Nome} = 'SAMI ASSISTENCIA MEDICA LTDA' THEN 'Samer'
       END
     ;;
   }
