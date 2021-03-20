@@ -119,7 +119,21 @@ view: beneficiaries {
   dimension: healthplan {
     label: "Plano de Saúde Atual"
     type: string
-    sql: ${TABLE}."healthplan" ;;
+    sql:
+     CASE
+    WHEN ${TABLE}."healthplan" = '' OR ${TABLE}."healthplan" IS NULL THEN 'Não Possuía'
+    ELSE ${TABLE}."healthplan"
+    END ;;
+  }
+
+  dimension: planosaude {
+    label: "Possuía Plano de Saúde?"
+    type: string
+    sql: CASE
+    WHEN ${TABLE}."healthplan" = '' OR ${TABLE}."healthplan" IS NULL THEN 'Não'
+    ELSE 'Sim'
+    END
+    ;;
   }
 
   dimension: isactive {
