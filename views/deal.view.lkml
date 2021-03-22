@@ -628,6 +628,7 @@ END ;;
     drill_fields: [dealname]
   }
 
+
   measure: sum_amount {
     type: sum
     sql: ${valor} ;;

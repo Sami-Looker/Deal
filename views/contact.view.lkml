@@ -1,4 +1,5 @@
 view: contact {
+  label: "Leads"
   sql_table_name:g_hubspot.contact ;;
   drill_fields: [id]
 
@@ -7,6 +8,12 @@ view: contact {
     primary_key: yes
     type: number
     sql: ${TABLE}."id" ;;
+  }
+
+  dimension: campanha {
+    label: "Campanha"
+    type: string
+    sql: ${TABLE}."property_campanha" ;;
   }
 
   dimension: _fivetran_deleted {
@@ -115,7 +122,7 @@ view: contact {
   }
 
   dimension_group: property_createdate {
-    hidden: yes
+    hidden: no
     label: "Create Date"
     type: time
     timeframes: [
@@ -127,6 +134,13 @@ view: contact {
       quarter,
       year
     ]
+    sql: ${TABLE}."property_createdate" ;;
+  }
+
+  dimension: createdate {
+    hidden: yes
+    label: "Create Date"
+    type: date
     sql: ${TABLE}."property_createdate" ;;
   }
 
@@ -707,7 +721,8 @@ view: contact {
   }
 
   dimension: property_hs_lead_status {
-    hidden: yes
+    label: "Lead Status"
+    hidden: no
     type: string
     sql: ${TABLE}."property_hs_lead_status" ;;
   }
@@ -1296,8 +1311,8 @@ view: contact {
   }
 
   measure: count {
-    hidden: yes
+    hidden: no
     type: count
-    drill_fields: [id, property_firstname, property_lastname, property_hs_email_last_email_name, property_ownername]
+    drill_fields: [id]
   }
 }

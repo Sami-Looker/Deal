@@ -111,15 +111,21 @@ explore: deal {
 
   join: deal_contact {
     view_label: "Contact"
-    type: left_outer
+    type: full_outer
     sql_on: ${deal.deal_id} = ${deal_contact.deal_id} ;;
     relationship: many_to_one
   }
 
   join: contact {
     view_label: "Contact"
-    type: left_outer
+    type: full_outer
     sql_on: ${deal_contact.contact_id} = ${contact.id} ;;
+    relationship: one_to_one
+  }
+
+  join: mv_audience_overview {
+    type: left_outer
+    sql_on: ${mv_audience_overview.date} = ${contact.createdate} ;;
     relationship: one_to_one
   }
 
