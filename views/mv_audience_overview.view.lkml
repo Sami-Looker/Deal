@@ -1,4 +1,5 @@
 view: mv_audience_overview {
+  label: "Site Sami"
   sql_table_name: google_analytics_mainview.mv_audience_overview ;;
 
   dimension: avg_session_duration {

@@ -110,14 +110,12 @@ explore: deal {
   }
 
   join: deal_contact {
-    view_label: "Contact"
     type: full_outer
     sql_on: ${deal.deal_id} = ${deal_contact.deal_id} ;;
     relationship: many_to_one
   }
 
   join: contact {
-    view_label: "Contact"
     type: full_outer
     sql_on: ${deal_contact.contact_id} = ${contact.id} ;;
     relationship: one_to_one
@@ -130,35 +128,30 @@ explore: deal {
   }
 
   join: ticket {
-    view_label: "Contact"
     type: left_outer
     sql_on: ${ticket.id} = ${ticket_contact.ticket_id} ;;
     relationship: one_to_one
   }
 
   join: ticket_contact {
-    view_label: "Contact"
     type: left_outer
     sql_on: ${ticket_contact.contact_id} = ${contact_mkt.id} ;;
     relationship: one_to_one
   }
 
   join: contact_mkt {
-    view_label: "Contact"
     type: left_outer
     sql_on: ${contact_mkt.property_cpf} = ${beneficiaries.cpf} ;;
     relationship: one_to_one
   }
 
   join: deal_pipeline {
-    view_label: "Deal Pipeline"
     type: left_outer
     sql_on: ${deal.deal_pipeline_id} = ${deal_pipeline.pipeline_id} ;;
     relationship: one_to_one
   }
 
   join: deal_pipeline_stage {
-    view_label: "Deal Stage"
     type: left_outer
     sql_on: ${deal.deal_pipeline_stage_id} = ${deal_pipeline_stage.stage_id} ;;
     relationship: one_to_one

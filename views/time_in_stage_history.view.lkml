@@ -37,7 +37,7 @@ view: time_in_stage_history {
 
   dimension: deal_stage {
     label: "Deal Stage"
-    hidden: no
+    hidden: yes
     type: string
     sql: ${TABLE}.deal_stage ;;
   }
@@ -49,12 +49,14 @@ view: time_in_stage_history {
   }
 
   dimension_group: enter_timestamp {
+    hidden: yes
     type: time
     sql: ${TABLE}.date_entered ;;
     timeframes: [raw,date,week,month,year]
   }
 
   dimension_group: exit_timestamp {
+    hidden: yes
     type: time
     sql: ${TABLE}.exit_timestamp ;;
     timeframes: [raw,date,week,month,year]
@@ -67,6 +69,7 @@ view: time_in_stage_history {
   }
 
   dimension_group: in_deal_stage {
+    hidden: yes
     type: duration
     sql_start: ${enter_timestamp_raw} ;;
     sql_end:
@@ -79,6 +82,7 @@ view: time_in_stage_history {
   }
 
   dimension: days_in_deal_stage_tier {
+    hidden: yes
     type: number
     sql: ${days_in_deal_stage} ;;
     tiers: [1,2,3,4,5,6,7,8,9,10]
@@ -86,6 +90,7 @@ view: time_in_stage_history {
   }
 
   measure: average_days_in_deal_stage {
+    hidden: yes
     group_label: "Duration KPIs"
     type: average
     sql: ${days_in_deal_stage} ;;
@@ -94,6 +99,7 @@ view: time_in_stage_history {
   }
 
   measure:sum_days_in_deal_stage {
+    hidden: yes
     group_label: "Duration KPIs"
     type: sum
     sql: ${days_in_deal_stage} ;;
@@ -102,6 +108,7 @@ view: time_in_stage_history {
   }
 
   measure: median_days_in_deal_stage {
+    hidden: yes
     group_label: "Duration KPIs"
     type: median
     sql: ${days_in_deal_stage} ;;
@@ -110,12 +117,14 @@ view: time_in_stage_history {
   }
 
   measure: count_total {
+    hidden: yes
     alias: [count]
     type: count
     drill_fields: [deal_id]
   }
 
   measure: count_total_deals {
+    hidden: yes
     alias: [count_distinct]
     type: count_distinct
     sql: ${deal_id};;
