@@ -61,6 +61,23 @@ view: beneficiaries {
     sql: extract (year from age (current_date,${birthdate})) ;;
   }
 
+  dimension:faixa_etaria {
+    label: "Faixa Etária ANS"
+    type: string
+    sql: CASE
+    WHEN ${Age} between 0 and 18 then '0 à 18 anos'
+    WHEN ${Age} between 19 and 23 then '19 à 23 anos'
+    WHEN ${Age} between 24 and 28 then '24 à 28 anos'
+    WHEN ${Age} between 29 and 33 then '29 à 33 anos'
+    WHEN ${Age} between 34 and 38 then '34 à 38 anos'
+    WHEN ${Age} between 39 and 43 then '39 à 43 anos'
+    WHEN ${Age} between 44 and 48 then '44 à 48 anos'
+    WHEN ${Age} between 49 and 53 then '49 à 53 anos'
+    WHEN ${Age} between 54 and 58 then '54 à 58 anos'
+    WHEN ${Age} between 59 and 150 then '59 ou + anos'
+    end;;
+  }
+
   dimension: cns {
     hidden: yes
     type: string
