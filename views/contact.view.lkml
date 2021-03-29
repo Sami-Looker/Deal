@@ -1,6 +1,6 @@
 view: contact {
   label: "Leads"
-  sql_table_name:g_hubspot.contact ;;
+  sql_table_name:gr_hubspot.contact ;;
   drill_fields: [id]
 
   dimension: id {
@@ -385,19 +385,19 @@ view: contact {
   }
 
   dimension: property_hs_analytics_source {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}."property_hs_analytics_source" ;;
   }
 
   dimension: property_hs_analytics_source_data_1 {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}."property_hs_analytics_source_data_1" ;;
   }
 
   dimension: property_hs_analytics_source_data_2 {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}."property_hs_analytics_source_data_2" ;;
   }

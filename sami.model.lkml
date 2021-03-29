@@ -122,8 +122,8 @@ explore: deal {
   }
 
   join: mv_audience_overview {
-    type: left_outer
-    sql_on: ${mv_audience_overview.date} = ${contact.createdate} ;;
+    type:left_outer
+    sql_on:${mv_audience_overview.date} = ${contact.createdate} ;;
     relationship: one_to_one
   }
 

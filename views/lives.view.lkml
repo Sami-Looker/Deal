@@ -27,5 +27,9 @@ view: lives {
     sql: ${TABLE}."birth_at" ;;
   }
 
-
+  dimension: holder_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}."holder_id" ;;
+  }
 }

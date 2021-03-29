@@ -15,8 +15,8 @@ view: mv_audience_overview {
   }
 
   dimension: date {
-    hidden: yes
     primary_key: yes
+    hidden: yes
     type: date
     sql: ${TABLE}."date" ;;
   }
