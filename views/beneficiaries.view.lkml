@@ -99,7 +99,10 @@ view: beneficiaries {
   dimension: email {
     label: "e-mail"
     type: string
-    sql: LOWER(${life_contacts.email}) ;;
+    sql:CASE
+          WHEN (LOWER(${life_contacts.email})) IS NULL THEN LOWER(${TABLE}."email")
+          ELSE LOWER(${life_contacts.email})
+          END;;
   }
 
   dimension: employeespecification {
