@@ -99,7 +99,7 @@ view: beneficiaries {
   dimension: email {
     label: "e-mail"
     type: string
-    sql: LOWER(${TABLE}."email") ;;
+    sql: LOWER(${life_contacts.email}) ;;
   }
 
   dimension: employeespecification {

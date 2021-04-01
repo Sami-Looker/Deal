@@ -220,6 +220,12 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: life_contacts {
+    type: left_outer
+    sql_on: ${life_contacts.life_id} = ${lives.id} ;;
+    relationship: one_to_one
+  }
+
   join: lives {
     type: left_outer
     sql_on: ${lives.health_card_number} = ${beneficiaries.memberid} ;;
@@ -236,6 +242,24 @@ explore: deal {
     type: left_outer
     sql_on: ${lives.id} = ${beneficiaries_dw.life_id} ;;
     relationship: one_to_one
+  }
+
+  join: invoices {
+    type: full_outer
+    sql_on: ${lives.id} = ${invoices.life_id} ;;
+    relationship: one_to_many
+  }
+
+  join: episodes {
+    type: left_outer
+    sql_on: ${episodes.id} = ${invoices.episode_id} ;;
+    relationship: one_to_one
+  }
+
+  join: procedures {
+    type: left_outer
+    sql_on: ${episodes.id} = ${procedures.episode_id} ;;
+    relationship: one_to_many
   }
 
   join: grace_period {
