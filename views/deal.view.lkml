@@ -179,6 +179,7 @@ view: deal{
   }
 
   dimension: hs_analytics_source {
+    hidden: yes
     label: "Main Source"
     group_label: "Source"
     type: string
@@ -186,6 +187,7 @@ view: deal{
   }
 
   dimension: hs_analytics_source_data_1 {
+    hidden: yes
     label: "Main Source Data 1"
     group_label: "Source"
     type: string
@@ -193,6 +195,7 @@ view: deal{
   }
 
   dimension: hs_analytics_source_data_2 {
+    hidden: yes
     label: "Main Source Data 2"
     group_label: "Source"
     type: string
@@ -491,6 +494,7 @@ view: deal{
   }
 
   dimension: campanha {
+    hidden: yes
     label: "Campanha"
     type: string
     sql: ${TABLE}."property_campanha" ;;

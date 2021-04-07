@@ -385,18 +385,21 @@ view: contact {
   }
 
   dimension: property_hs_analytics_source {
+    label: "Fonte de Aquisição"
     hidden: no
     type: string
     sql: ${TABLE}."property_hs_analytics_source" ;;
   }
 
   dimension: property_hs_analytics_source_data_1 {
+    label: "Fonte de Aquisição - Sub1"
     hidden: no
     type: string
     sql: ${TABLE}."property_hs_analytics_source_data_1" ;;
   }
 
   dimension: property_hs_analytics_source_data_2 {
+    label: "Fonte de Aquisição - Sub2"
     hidden: no
     type: string
     sql: ${TABLE}."property_hs_analytics_source_data_2" ;;

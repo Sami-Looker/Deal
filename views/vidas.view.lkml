@@ -1,26 +1,21 @@
 view:vidas {
     derived_table: {
-      explore_source: deal {
-        column: property_no_do_cnpj {}
-        column: count { field: beneficiaries.count }
-        filters: {
-          field: deal.is_deleted
-          value: "no"
+          explore_source: deal {
+            column: cnpj { field: company.cnpj }
+            column: count { field: beneficiaries.count }
+            filters: {
+              field: deal.is_deleted
+              value: "no"
+            }
+          }
         }
-        filters: {
-          field: deal.property_no_do_cnpj
-          value: "-NULL"
+        dimension: cnpj {
+          hidden: yes
+          label: "Empresas CNPJ"
+        }
+        dimension: count {
+          hidden: yes
+          label: "Membros Count"
+          type: number
         }
       }
-    }
-    dimension: property_no_do_cnpj {
-      primary_key: yes
-      hidden: yes
-      label: "Deal CNPJ"
-    }
-    dimension: count {
-      hidden: yes
-      label: "Membros Count"
-      type: number
-    }
-  }

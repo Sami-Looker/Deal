@@ -496,7 +496,7 @@ view: company {
     sql: ${TABLE}."property_name" ;;
   }
 
-  dimension: no_do_cnpj {
+  dimension: property_no_do_cnpj {
     hidden: yes
     type: string
     sql: ${TABLE}."property_no_do_cnpj" ;;

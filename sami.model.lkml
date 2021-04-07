@@ -210,7 +210,7 @@ explore: deal {
 
   join: vidas {
     type: left_outer
-    sql_on: ${vidas.property_no_do_cnpj} = ${deal.property_no_do_cnpj} ;;
+    sql_on: ${vidas.cnpj} = ${company.cnpj} ;;
     relationship: one_to_one
   }
 
@@ -250,15 +250,9 @@ explore: deal {
     relationship: one_to_many
   }
 
-  join: episodes {
-    type: left_outer
-    sql_on: ${episodes.id} = ${invoices.episode_id} ;;
-    relationship: one_to_one
-  }
-
   join: procedures {
     type: left_outer
-    sql_on: ${episodes.id} = ${procedures.episode_id} ;;
+    sql_on: ${invoices.episode_id} = ${procedures.episode_id} ;;
     relationship: one_to_many
   }
 
