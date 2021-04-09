@@ -32,4 +32,10 @@ view: lives {
     type: number
     sql: ${TABLE}."holder_id" ;;
   }
+
+  dimension: name {
+    hidden: yes
+    type: string
+    sql: ${TABLE}."name" ;;
+  }
 }

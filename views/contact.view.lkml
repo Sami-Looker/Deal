@@ -388,7 +388,10 @@ view: contact {
     label: "Fonte de Aquisição"
     hidden: no
     type: string
-    sql: ${TABLE}."property_hs_analytics_source" ;;
+    sql: CASE
+        WHEN ${property_hs_analytics_source_data_2} = 'fb / display' OR ${property_hs_analytics_source_data_2} = 'ig / display' THEN 'FACEBOOK'
+        ELSE ${TABLE}."property_hs_analytics_source"
+        END;;
   }
 
   dimension: property_hs_analytics_source_data_1 {

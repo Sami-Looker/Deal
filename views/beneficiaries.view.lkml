@@ -201,7 +201,7 @@ view: beneficiaries {
     group_label: "Nome"
     label: "Nome completo"
     type: string
-    sql: ${TABLE}."name" ;;
+    sql: ${lives.name} ;;
   }
 
   dimension: first_name{
