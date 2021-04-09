@@ -142,6 +142,13 @@ view: deal{
     sql: ${TABLE}."property_deal_currency_code" ;;
   }
 
+  dimension: property_tipo_de_venda {
+    label: "Tipo de Venda"
+    hidden: no
+    type: string
+    sql: ${TABLE}."property_tipo_de_venda" ;;
+  }
+
   dimension_group: property_engagements_last_meeting_booked {
     hidden: yes
     type: time
