@@ -11,6 +11,10 @@ view: deal{
     primary_key: yes
     type: number
     sql: ${TABLE}."deal_id" ;;
+    link: {
+      label: "Hubspot"
+      url: "https://app.hubspot.com/contacts/7798412/deal/{{value}}/"
+    }
   }
 
   dimension_group: _fivetran_synced {
