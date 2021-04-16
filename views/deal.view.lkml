@@ -506,7 +506,7 @@ view: deal{
 
   dimension: campanha {
     hidden: yes
-    label: "Campanha"
+    label: "Campanha deal"
     type: string
     sql: ${TABLE}."property_campanha" ;;
   }
