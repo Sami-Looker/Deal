@@ -92,4 +92,10 @@ view: beneficiaries_dw {
     sql: ${TABLE}."cost" ;;
   }
 
+  dimension: start_at {
+    hidden: yes
+    type: date
+    sql: ${TABLE}."start_at" ;;
+  }
+
 }

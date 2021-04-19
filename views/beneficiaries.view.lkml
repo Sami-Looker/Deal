@@ -16,6 +16,13 @@ view: beneficiaries {
     sql: ${TABLE}."__v" ;;
   }
 
+  dimension: start_at {
+    hidden: no
+    label: "Data de Vigência do Membro"
+    type: date
+    sql: ${beneficiaries_dw.start_at} ;;
+  }
+
   dimension: _id {
     hidden: yes
     type: string

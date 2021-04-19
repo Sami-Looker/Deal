@@ -612,7 +612,7 @@ END ;;
   }
 
   dimension_group: data_pagamento {
-    label: "Data de Vigência"
+    label: "Data de Vigência do Contrato"
     type: time
     timeframes: [
       raw,
