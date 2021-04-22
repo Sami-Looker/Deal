@@ -115,6 +115,12 @@ explore: deal {
     relationship: many_to_one
   }
 
+  join: owner {
+    type: left_outer
+    sql_on: ${deal.owner_id} = ${owner.owner_id} ;;
+    relationship: many_to_one
+  }
+
   join: contact {
     type: full_outer
     sql_on: ${deal_contact.contact_id} = ${contact.id} ;;

@@ -69,6 +69,12 @@ view: owner {
     sql: ${TABLE}."last_name" ;;
   }
 
+  dimension: full_name {
+    hidden: yes
+    type: string
+    sql: concat(${TABLE}."first_name",' ',${TABLE}."last_name") ;;
+  }
+
   dimension: portal_id {
     hidden: yes
     type: number

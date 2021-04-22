@@ -438,7 +438,7 @@ view: deal{
   dimension: property_nome_do_vendedor {
     label: "Vendedor"
     type: string
-    sql: ${TABLE}."property_nome_do_vendedor" ;;
+    sql: ${owner.full_name} ;;
   }
 
   dimension_group: property_notes_last_contacted {
