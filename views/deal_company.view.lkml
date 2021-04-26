@@ -1,7 +1,7 @@
 # All fields are hidden - no fields are needed for explores
 
 view: deal_company {
-  sql_table_name: hubspot_growth.deal_company ;;
+  sql_table_name: hubspotg.deal_company ;;
 
   dimension_group: _fivetran_synced {
     hidden: yes

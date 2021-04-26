@@ -1,5 +1,5 @@
 view: ticket {
-  sql_table_name: hubspot_marketing.ticket ;;
+  sql_table_name: hubspotm.ticket ;;
   drill_fields: [id]
 
   dimension: id {

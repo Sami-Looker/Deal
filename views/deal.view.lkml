@@ -2,7 +2,7 @@ include: "/base_views/deal_base.view"
 
 view: deal{
   extends: [deal_base]
-  sql_table_name: hubspot_growth.deal ;;
+  sql_table_name: hubspotg.deal ;;
 
   drill_fields: [dealname]
 

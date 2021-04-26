@@ -1,5 +1,5 @@
 view: contact_mkt {
-  sql_table_name: hubspot_marketing.contact ;;
+  sql_table_name: hubspotm.contact ;;
   drill_fields: [id]
 
   dimension: id {
