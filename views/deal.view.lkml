@@ -69,6 +69,13 @@ view: deal{
     sql: ${TABLE}."portal_id" ;;
   }
 
+  dimension: property_venda_digital {
+    label: "Venda Digital"
+    type: string
+    sql: ${TABLE}."property_venda_digital" ;;
+  }
+
+
   dimension: amount {
     group_label: "Amounts"
     hidden: yes
