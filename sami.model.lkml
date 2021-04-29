@@ -25,6 +25,12 @@ explore: deal {
     relationship: many_to_one
   }
 
+  join: gympass {
+    type: left_outer
+    sql_on: ${beneficiaries_dw.id} = ${gympass.beneficiary_id} ;;
+    relationship: one_to_many
+  }
+
   join: contracts {
     type: left_outer
     sql_on: ${companies_dw.id} = ${contracts.company_contractor_company_id} ;;
