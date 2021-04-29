@@ -71,7 +71,6 @@ view: deal{
 
   dimension: property_venda_digital {
     label: "Venda Digital"
-    hidden: no
     type: string
     sql: ${TABLE}."property_venda_digital" ;;
   }
