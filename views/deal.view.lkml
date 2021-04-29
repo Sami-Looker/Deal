@@ -94,21 +94,6 @@ view: deal{
     sql: ${TABLE}."property_amount_in_home_currency" ;;
   }
 
-  dimension_group: close {
-    label: "Close Date"
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}."property_closedate" ;;
-  }
-
   dimension_group: create {
     label: "Create Date"
     type: time
