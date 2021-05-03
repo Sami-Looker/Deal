@@ -570,6 +570,17 @@ end
       sql:${parentesco.spouse};;
   }
 
+  dimension: estratificacao {
+    hidden: no
+    label: "Elegibilidade para Ativação Clínica"
+    type: string
+    sql: CASE
+      WHEN  ((${symptoms.presented_some_symptoms} = 'Algum tipo de câncer') OR (${symptoms.presented_some_symptoms} = 'Infarto do miocárdio') OR (${symptoms.presented_some_symptoms} = 'Arritmia cardíaca') OR (${symptoms.presented_some_symptoms} = 'AVC (derrame)') OR (${hra_imc.imc_cla} = 'Obesidade Severa') OR (${symptoms_count.count} BETWEEN 3 and 9)) then 'Alto Risco'
+      WHEN  ((${hra_imc.imc_cla} = 'Obesidade') or ((${hra.smokes}= 'Sim'or ${hra.performs_exercises_regularly}='Não') and ${hra.presented_some_symptoms} IS NOT NULL) OR (${symptoms_count.count} BETWEEN 1 and 2) or (${hra_pt.nota_saude} BETWEEN 0 and 4) OR (${hra.disorders_for_more_than_10_days}= 'Sim')) then 'Médio Risco'
+      ELSE 'Baixo Risco'
+      END ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, name, mothersname, plans.id, plans.name]

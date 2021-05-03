@@ -44,95 +44,111 @@ view: hra {
 
   dimension: cpf {
     primary_key: yes
+    hidden: yes
     type: string
     sql: ${TABLE}."cpf" ;;
   }
 
   dimension: bmi {
+    hidden: yes
     label: "IMC"
     type: number
     sql: ${hra_imc.imc} ;;
   }
 
   dimension: bmi_classification {
+    hidden: yes
     label: "Classificação IMC"
     type: string
     sql: ${hra_imc.imc_cla} ;;
   }
 
   dimension: bmi_medical_followup {
+    hidden: yes
     label: "Checkup IMC"
     type: string
     sql: ${TABLE}."bmi_medical_followup" ;;
   }
 
   dimension: current_health_grade {
+    hidden: yes
     label: "Nota de Saúde"
     type: number
     sql: ${hra_pt.nota_saude} ;;
   }
 
   dimension: current_health_medical_followup {
+    hidden: yes
     label: "Checkup Nota de Saúde"
     type: string
     sql: ${TABLE}."current_health_medical_followup" ;;
   }
 
   dimension: disorder_medical_followup {
+    hidden: yes
     label: "Checkup Sintomas"
     type: string
     sql: ${TABLE}."disorder_medical_followup" ;;
   }
 
   dimension: disorders_for_more_than_10_days {
+    hidden: yes
     label: "Algum sintoma por mais de 10 dias"
     type: string
     sql: ${TABLE}."disorders_for_more_than_10_days" ;;
   }
 
   dimension: free_time {
+    hidden: yes
     label: "O que faz no tempo livre"
     type: string
     sql: ${TABLE}."free_time" ;;
   }
 
   dimension: height {
+    hidden: yes
     label: "Altura"
     type: number
     sql: ${hra_imc.altura} ;;
   }
 
   dimension: performs_exercises_regularly {
+    hidden: yes
     label: "Pratica exercícios Regularmente"
     type: string
     sql: ${TABLE}."performs_exercises_regularly" ;;
   }
 
   dimension: presented_some_symptoms {
+    hidden: yes
     label: "Condições clínicas apresentadas"
     type: string
     sql: ${TABLE}."presented_some_symptoms" ;;
   }
 
   dimension: smokes {
+    hidden: yes
     label: "Fuma"
     type: string
     sql: ${TABLE}."smokes" ;;
   }
 
   dimension: want_stop_smoking {
+    hidden: yes
     label: "Quer para de fumar?"
     type: string
     sql: ${TABLE}."want_stop_smoking" ;;
   }
 
   dimension: weight {
+    hidden: yes
     label: "Peso"
     type: number
     sql: ${hra_imc.peso} ;;
   }
 
   dimension: estratificacao {
+    hidden: yes
     label: "Risco"
     type: string
     sql: CASE
@@ -157,13 +173,14 @@ view: hra {
   }
 
   dimension: symptoms {
+    hidden: yes
     label: "Condições"
     type: string
-    hidden: no
     sql: ${symptoms.presented_some_symptoms} ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }

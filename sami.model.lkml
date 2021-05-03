@@ -279,4 +279,34 @@ explore: deal {
     sql_on: ${grace_types.id} = ${beneficiaries_dw.grace_type_id} ;;
     relationship: one_to_one
   }
+
+  join: hra {
+    type: left_outer
+    sql_on:${users.cpf} = ${hra.cpf} ;;
+    relationship: one_to_one
+  }
+
+  join: hra_imc {
+    type: left_outer
+    sql_on:${hra_imc.cpf} = ${hra.cpf} ;;
+    relationship: one_to_one
+  }
+
+  join: hra_pt {
+    type: left_outer
+    sql_on:${hra_pt.cpf} = ${hra.cpf} ;;
+    relationship: one_to_one
+  }
+
+  join: symptoms {
+    type: left_outer
+    sql_on:${users.cpf} = ${symptoms.cpf} ;;
+    relationship: one_to_many
+  }
+
+  join: symptoms_count {
+    type: left_outer
+    sql_on:${users.cpf} = ${symptoms_count.cpf} ;;
+    relationship: one_to_many
+  }
 }
