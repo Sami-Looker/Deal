@@ -1,5 +1,5 @@
 view: contact_property_history {
-  sql_table_name: hubspotgr.contact_property_history ;;
+  sql_table_name: hubspotgro.contact_property_history ;;
 
   dimension_group: _fivetran_synced {
     hidden: yes
