@@ -14,4 +14,16 @@ view: contact_mkt {
     type: string
     sql: ${TABLE}."property_cpf" ;;
   }
+
+  dimension: property_status_do_agendamento_ativacao_clinica {
+    hidden: yes
+    type: string
+    sql: ${TABLE}."property_status_do_agendamento_ativacao_clinica" ;;
+  }
+
+  dimension: property_data_de_agendamento_ativacao_clinica {
+    hidden: yes
+    type: date
+    sql: ${TABLE}."property_data_de_agendamento_ativacao_clinica" ;;
+  }
 }
