@@ -2,18 +2,18 @@ view: hra {
   label: "HRA"
     derived_table: {
       indexes: ["cpf"]
-      sql:SELECT Replace(REPLACE(REPLACE(ga.cpf,'{',''),'}',''),'"','') as cpf
-        ,Replace(REPLACE(REPLACE(ga.p2,'{',''),'}',''),'"','') as smokes
-        ,Replace(REPLACE(REPLACE(ga.p3,'{',''),'}',''),'"','') as disorders_for_more_than_10_days
-        ,Replace(REPLACE(REPLACE(ga.p4,'{',''),'}',''),'"','') as disorder_medical_followup
-        ,Replace(REPLACE(REPLACE(ga.p5,'{',''),'}',''),'"','') as test
-        ,Replace(REPLACE(REPLACE(ga.p6,'{',''),'}',''),'"','') as want_stop_smoking
-        ,Replace(REPLACE(REPLACE(ga.p7,'{',''),'}',''),'"','') as current_health_medical_followup
-        ,Replace(REPLACE(REPLACE(ga.p8,'{',''),'}',''),'"','') as performs_exercises_regularly
-        ,Replace(REPLACE(REPLACE(ga.p9,'{',''),'}',''),'"','') as free_time
-        ,Replace(REPLACE(REPLACE(ga.p10,'{',''),'}',''),'"','') as presented_some_symptoms
-        ,Replace(REPLACE(REPLACE(ga.p11,'{',''),'}',''),'"','') as wants_receive_health_and_food_tips
-        ,Replace(REPLACE(REPLACE(ga.p12,'{',''),'}',''),'"','') as bmi_medical_followup
+      sql:SELECT SELECT Replace(REPLACE(REPLACE(ga.cpf,'{',''),'}',''),'"','') as cpf
+        ,Replace(REPLACE(REPLACE(ga.p2,'{',''),'}',''),'"','') as presented_some_symptoms
+        ,Replace(REPLACE(REPLACE(ga.p3,'{',''),'}',''),'"','') as disorder_medical_followup
+        ,Replace(REPLACE(REPLACE(ga.p4,'{',''),'}',''),'"','') as current_health_medical_followup
+        ,Replace(REPLACE(REPLACE(ga.p5,'{',''),'}',''),'"','') as bmi_medical_followup
+        ,Replace(REPLACE(REPLACE(ga.p6,'{',''),'}',''),'"','') as smokes
+        ,Replace(REPLACE(REPLACE(ga.p7,'{',''),'}',''),'"','') as want_stop_smoking
+        ,Replace(REPLACE(REPLACE(ga.p8,'{',''),'}',''),'"','') as wants_receive_health_and_food_tips
+        ,Replace(REPLACE(REPLACE(ga.p9,'{',''),'}',''),'"','') as disorders_for_more_than_10_days
+        ,Replace(REPLACE(REPLACE(ga.p10,'{',''),'}',''),'"','') as free_time
+        ,Replace(REPLACE(REPLACE(ga.p11,'{',''),'}',''),'"','') as test
+        ,Replace(REPLACE(REPLACE(ga.p12,'{',''),'}',''),'"','') as performs_exercises_regularly
         FROM
         (SELECT * FROM datawarehouse.crosstab(
                   'select
