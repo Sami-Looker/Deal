@@ -303,6 +303,13 @@ view: beneficiaries {
     sql: ${guia_membro.created_at};;
   }
 
+  dimension: boas_vindas {
+    label: "Data de envio das Boas Vindas"
+    hidden: no
+    type: date
+    sql: ${boas_vindas.created_at};;
+  }
+
   dimension: video_tds {
     label: "Data de envio Alerta Videochamada"
     hidden: no

@@ -43,6 +43,12 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: boas_vindas {
+    type: left_outer
+    sql_on: ${beneficiaries.email} = ${boas_vindas.email} ;;
+    relationship: one_to_one
+  }
+
   join: video_tds {
     type: left_outer
     sql_on: ${beneficiaries.email} = ${video_tds.email} ;;
