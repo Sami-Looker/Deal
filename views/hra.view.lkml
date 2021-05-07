@@ -2,7 +2,7 @@ view: hra {
   label: "HRA"
     derived_table: {
       indexes: ["cpf"]
-      sql:SELECT SELECT Replace(REPLACE(REPLACE(ga.cpf,'{',''),'}',''),'"','') as cpf
+      sql:SELECT Replace(REPLACE(REPLACE(ga.cpf,'{',''),'}',''),'"','') as cpf
         ,Replace(REPLACE(REPLACE(ga.p2,'{',''),'}',''),'"','') as presented_some_symptoms
         ,Replace(REPLACE(REPLACE(ga.p3,'{',''),'}',''),'"','') as disorder_medical_followup
         ,Replace(REPLACE(REPLACE(ga.p4,'{',''),'}',''),'"','') as current_health_medical_followup
