@@ -37,7 +37,6 @@ view: hra {
                     LEFT JOIN datawarehouse.concepts c ON (c.synonym_id = sr.answer_synonym_id)
                     WHERE SC.survey_concept_id = 1 AND c.domain_id = 25
                     GROUP BY sr.questioN_as_string') AS t (CPF varchar, P2 text, P3 text, P4 text, P5 text, P6 text, P7 text, P8 text, P9 text, P10 text, P11 text, P12 text)) ga
-
                ;;
       persist_for: "2 hours"
     }
