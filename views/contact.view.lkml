@@ -21,7 +21,7 @@ view: contact {
     type: string
     sql: CASE
           WHEN ${campanha} = "AccountTech - Não Clientes" or ${campanha} = "AccountTech" or ${campanha} = "ACSP" or ${campanha} = "Allya" or ${campanha} = "Alper - Força de Vendas" or ${campanha} = "Bradoo Beauty" or ${campanha} = "Celebrar" or ${campanha} = "Market Up" or ${campanha} = "Indica Sami" or ${campanha} = "Indica Sami (Interno)" or ${campanha} = "Qipu"
-          THEN "PARCEIRIAS" ELSE "BAU" END;;
+          THEN "Parceiros" ELSE "BAU" END;;
   }
 
   dimension: _fivetran_deleted {
