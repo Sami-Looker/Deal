@@ -25,6 +25,12 @@ explore: deal {
     relationship: many_to_one
   }
 
+  join: users {
+    type: left_outer
+    sql_on: ${companies.hirerid} = ${users._id} ;;
+    relationship: one_to_one
+  }
+
   join: gympass {
     type: left_outer
     sql_on: ${beneficiaries_dw.id} = ${gympass.beneficiary_id} ;;
@@ -61,9 +67,9 @@ explore: deal {
     relationship: one_to_one
   }
 
-  join: users {
+  join: user {
     type: full_outer
-    sql_on: ${beneficiaries.cpf} = ${users.cpf} ;;
+    sql_on: ${beneficiaries.cpf} = ${user.cpf} ;;
     relationship: one_to_one
   }
 
@@ -106,6 +112,18 @@ explore: deal {
   join: companies_dw {
     type: left_outer
     sql_on: ${companies_dw.document_identification_primary} =${deal.property_no_do_cnpj} ;;
+    relationship: one_to_one
+  }
+
+  join: pagamentos {
+    type: left_outer
+    sql_on: ${companies_dw.document_identification_primary} = ${pagamentos.cnpj} ;;
+    relationship: one_to_many
+  }
+
+  join: pagamentosina {
+    type: left_outer
+    sql_on: ${companies_dw.document_identification_primary} = ${pagamentosina.cnpj} ;;
     relationship: one_to_one
   }
 
@@ -288,7 +306,7 @@ explore: deal {
 
   join: hra {
     type: left_outer
-    sql_on:${users.cpf} = ${hra.cpf} ;;
+    sql_on:${user.cpf} = ${hra.cpf} ;;
     relationship: one_to_one
   }
 
@@ -306,13 +324,13 @@ explore: deal {
 
   join: symptoms {
     type: left_outer
-    sql_on:${users.cpf} = ${symptoms.cpf} ;;
+    sql_on:${user.cpf} = ${symptoms.cpf} ;;
     relationship: one_to_many
   }
 
   join: symptoms_count {
     type: left_outer
-    sql_on:${users.cpf} = ${symptoms_count.cpf} ;;
+    sql_on:${user.cpf} = ${symptoms_count.cpf} ;;
     relationship: one_to_many
   }
 }

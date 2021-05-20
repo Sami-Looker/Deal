@@ -291,7 +291,7 @@ view: beneficiaries {
     type: string
     sql:
      CASE
-           WHEN (((${guia_membro.created_at} + INTERVAL '7 days') <= CURRENT_DATE) and ${users.careteamid} IS NULL)
+           WHEN (((${guia_membro.created_at} + INTERVAL '7 days') <= CURRENT_DATE) and ${user.careteamid} IS NULL)
            THEN 'Sem Escolha por 7 dias ou mais'
          END;;
   }
@@ -353,7 +353,7 @@ view: beneficiaries {
     group_label: "Location"
     hidden: no
     type: string
-    sql: ${users.address} ;;
+    sql: ${user.address} ;;
   }
 
   dimension: addressnumber {
@@ -361,7 +361,7 @@ view: beneficiaries {
     group_label: "Location"
     hidden: no
     type: number
-    sql: ${users.addressnumber} ;;
+    sql: ${user.addressnumber} ;;
   }
 
   dimension: city {
@@ -369,7 +369,7 @@ view: beneficiaries {
     group_label: "Location"
     hidden: no
     type: string
-    sql: ${users.city} ;;
+    sql: ${user.city} ;;
   }
 
   dimension: complement {
@@ -377,7 +377,7 @@ view: beneficiaries {
     group_label: "Location"
     hidden: no
     type: string
-    sql: ${users.complement} ;;
+    sql: ${user.complement} ;;
   }
 
   dimension: district {
@@ -385,28 +385,28 @@ view: beneficiaries {
     group_label: "Location"
     hidden: no
     type: string
-    sql: ${users.district} ;;
+    sql: ${user.district} ;;
   }
   dimension: state {
     label: "Beneficiaries State"
     group_label: "Location"
     hidden: no
     type: string
-    sql: ${users.state} ;;
+    sql: ${user.state} ;;
   }
   dimension: zipcode {
     label: "Beneficiaries Zipcode"
     group_label: "Location"
     hidden: no
     type: zipcode
-    sql: ${users.zipcode} ;;
+    sql: ${user.zipcode} ;;
   }
 
   dimension: complete_address {
     label: "Beneficiaries Complete Address"
     group_label: "Location"
     type: string
-    sql: Concat(${users.address},', ', ${users.addressnumber},' - ',${users.complement},' - ',${users.district}, ' - CEP ',${users.zipcode}) ;;
+    sql: Concat(${user.address},', ', ${user.addressnumber},' - ',${user.complement},' - ',${user.district}, ' - CEP ',${user.zipcode}) ;;
   }
 
   dimension: latitude {
@@ -431,14 +431,14 @@ view: beneficiaries {
     label: "Data do cadastro no App do membro"
     hidden: no
     type: date
-    sql: ${users.createdat} ;;
+    sql: ${user.createdat} ;;
   }
 
   dimension: beneficiaryid {
     label: "N° Carteirinha"
     hidden: yes
     type: string
-    sql: ${users.beneficiaryid} ;;
+    sql: ${user.beneficiaryid} ;;
 
   }
 
@@ -446,7 +446,7 @@ view: beneficiaries {
     label: "Careteam ID"
     hidden: no
     type: string
-    sql: ${users.careteamid} ;;
+    sql: ${user.careteamid} ;;
   }
 
   dimension: cost {

@@ -675,6 +675,13 @@ view: company {
     type: string
     sql: ${companies.email} ;;
   }
+
+  dimension: emailc {
+    label: "e-mail Contratante"
+    type: string
+    sql: ${users.email} ;;
+  }
+
   dimension: founded {
     type: string
     sql: ${companies.founded} ;;
@@ -683,6 +690,12 @@ view: company {
     label: "Nome"
     type: string
     sql: ${companies.name} ;;
+  }
+
+  dimension: namec {
+    label: "Nome Contratante"
+    type: string
+    sql: ${users.name} ;;
   }
 
   dimension: main_phone {
