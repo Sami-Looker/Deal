@@ -38,4 +38,10 @@ view: contracts {
     type:number
     sql: ${TABLE}."payment_method_concept_id" ;;
   }
+
+  dimension: status_source_value {
+    hidden: yes
+    type: string
+    sql: ${TABLE}."status_source_value" ;;
+  }
 }

@@ -817,6 +817,13 @@ view: company {
       sql: ${companies.primary_activity_code_divisao};;
   }
 
+  dimension: status_source_value {
+    label: "Status do Contrato"
+    hidden: no
+    type: string
+    sql: ${contracts.status_source_value};;
+  }
+
   measure: count {
     type: count
   }

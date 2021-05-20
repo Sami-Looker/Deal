@@ -190,11 +190,17 @@ view: beneficiaries {
   dimension: memberid {
     label: "N° Carteirinha"
     type: string
-    sql: ${TABLE}."memberid" ;;
+    sql: ${TABLE}."memberid";;
     link: {
       label: "Dashboard do Membro"
       url: "https://sami.cloud.looker.com/dashboards-next/25?N%C2%B0+Carteirinha={{value}}"
     }
+  }
+
+  dimension: health_card_number {
+    label: "N° Carteirinha DW"
+    type: string
+    sql: ${lives.health_card_number};;
   }
 
   dimension: mothersname {
@@ -482,10 +488,10 @@ end
   }
 
   dimension: cpt {
-    label: "CPT"
+    label: "Declaração de Saúde"
     group_label: "Períodos de Carência"
     type: string
-    sql:${cpt.answer} ;;
+    sql:${cpt.analise_ds} ;;
   }
 
   dimension: id_t {
