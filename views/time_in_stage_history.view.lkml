@@ -9,8 +9,8 @@ view: time_in_stage_history {
         , ds.date_entered
         , LEAD(ds.date_entered) OVER (PARTITION BY ds.deal_id ORDER BY ds.date_entered) AS exit_timestamp
         , ROW_NUMBER() OVER (PARTITION BY ds.deal_id ORDER BY ds.date_entered) AS deal_stage_sequence
-      FROM hubspotgro.deal_stage ds
-      LEFT JOIN hubspotgro.deal_pipeline_stage dps ON (ds.value = dps.stage_id)
+      FROM hubspotgrowth.deal_stage ds
+      LEFT JOIN hubspotgrowth.deal_pipeline_stage dps ON (ds.value = dps.stage_id)
       ORDER BY ds.deal_id
     ;;
     persist_for: "2 hours"

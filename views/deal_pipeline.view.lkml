@@ -1,5 +1,5 @@
 view: deal_pipeline {
-  sql_table_name: hubspotgro.deal_pipeline ;;
+  sql_table_name: hubspotgrowth.deal_pipeline ;;
 
   dimension: _fivetran_deleted {
     hidden: yes

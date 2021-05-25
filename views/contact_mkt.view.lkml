@@ -1,5 +1,5 @@
 view: contact_mkt {
-  sql_table_name: hubspotm.contact ;;
+  sql_table_name: hubspotmarketing.contact ;;
   drill_fields: [id]
 
   dimension: id {
@@ -16,7 +16,7 @@ view: contact_mkt {
   }
 
   dimension: property_status_do_agendamento_ativacao_clinica {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}."property_status_do_agendamento_ativacao_clinica" ;;
   }

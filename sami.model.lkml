@@ -268,6 +268,12 @@ explore: deal {
     relationship: one_to_one
   }
 
+  join: invoices_new {
+    type: full_outer
+    sql_on: ${beneficiaries.memberid} = ${invoices_new.nr_carteirinha} ;;
+    relationship: one_to_many
+  }
+
   join: cpt {
     type: left_outer
     sql_on: ${cpt.cpf} = ${beneficiaries.cpf} ;;

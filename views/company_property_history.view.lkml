@@ -1,5 +1,5 @@
 view: company_property_history {
-  sql_table_name: hubspotgro.company_property_history ;;
+  sql_table_name: hubspotgrowth.company_property_history ;;
 
   dimension_group: _fivetran_synced {
     hidden: yes

@@ -584,7 +584,7 @@ end
   }
 
   dimension: estratificacao {
-    hidden: yes
+    hidden: no
     label: "Elegibilidade para Ativação Clínica"
     type: string
     sql: CASE WHEN ${contact_mkt.property_status_do_agendamento_ativacao_clinica} is null THEN (
