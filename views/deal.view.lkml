@@ -496,6 +496,21 @@ view: deal{
     sql: ${TABLE}."property_persona" ;;
   }
 
+  dimension: produto {
+    type: string
+    sql: ${TABLE}."property_produto" ;;
+  }
+
+  dimension: cta {
+    type: string
+    sql: ${TABLE}."property_cta" ;;
+  }
+
+  dimension: prioridade {
+    type: string
+    sql: ${TABLE}."property_prioridade" ;;
+  }
+
   dimension: campanha {
     hidden: yes
     label: "Campanha deal"

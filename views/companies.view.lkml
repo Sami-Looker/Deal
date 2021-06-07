@@ -189,7 +189,7 @@ view: companies {
   }
 
   dimension: primary_activity_code {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}."primary_activity_code" ;;
   }

@@ -10,7 +10,7 @@ view: companies_primary_activity {
   }
 
   dimension: code {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}."code" ;;
   }
