@@ -1,5 +1,5 @@
 view: ticket_contact {
-  sql_table_name: hubspotmarketing.ticket_contact ;;
+  sql_table_name: _mkthubspot.ticket_contact ;;
 
   dimension: contact_id {
     hidden: yes

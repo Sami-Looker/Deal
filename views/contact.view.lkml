@@ -1,6 +1,6 @@
 view: contact {
   label: "Leads"
-  sql_table_name:hubspotgrowth_.contact ;;
+  sql_table_name:_growthhubspot.contact ;;
   drill_fields: [id]
 
   dimension: id {

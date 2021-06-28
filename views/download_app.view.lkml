@@ -15,17 +15,17 @@ FROM
       et.email
     , e. created_at
     , ea.subject
-      FROM hubspotmarketing.engagement_email ea
-      LEFT JOIN hubspotmarketing.engagement_email_to et ON (ea.engagement_id = et.engagement_id)
-      LEFT JOIN hubspotmarketing.engagement e ON (ea.engagement_id = e.id)
+      FROM _mkthubspot.engagement_email ea
+      LEFT JOIN _mkthubspot.engagement_email_to et ON (ea.engagement_id = et.engagement_id)
+      LEFT JOIN _mkthubspot.engagement e ON (ea.engagement_id = e.id)
       WHERE ea.subject = 'Você já baixou tanto app, é hora de baixar o da Sami.'
     Union all
       SELECT
       ee.recipient
     , ee.CREATED
     , es.subject
-      FROM hubspotmarketing.email_event_sent es
-      LEFT JOIN hubspotmarketing.email_event ee ON (es.id = ee.id)
+      FROM _mkthubspot.email_event_sent es
+      LEFT JOIN _mkthubspot.email_event ee ON (es.id = ee.id)
       WHERE es.subject = 'Você já baixou tanto app, é hora de baixar o da Sami.' or es.subject = 'Você já baixou tanto app, é hora de baixar o da Sami.') xx
       Order by 1,2)xy)xz
       WHERE xz.email_sequence = 1

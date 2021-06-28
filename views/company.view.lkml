@@ -1,6 +1,6 @@
 view: company {
   label: "Empresas"
-  sql_table_name:hubspotgrowth_.company ;;
+  sql_table_name:_growthhubspot.company ;;
   drill_fields: [id]
 
   dimension: id {
