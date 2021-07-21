@@ -13,8 +13,8 @@ SELECT *
         , dps.macro_status AS deal_macro_status
         , ds.date_entered
         , ROW_NUMBER() OVER (PARTITION BY ds.deal_id || dps.macro_status ORDER BY ds.date_entered) AS deal_stage_sequence
-      FROM hubspot_grow.deal_stage ds
-      LEFT JOIN hubspot_grow.deal_pipeline_stage dps ON (ds.value = dps.stage_id)
+      FROM hubspotgw.deal_stage ds
+      LEFT JOIN hubspotgw.deal_pipeline_stage dps ON (ds.value = dps.stage_id)
       ORDER BY ds.deal_id, ds.date_entered) xx
       WHERE xx.deal_stage_sequence = 1)xy
     ;;

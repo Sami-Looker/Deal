@@ -1,5 +1,5 @@
 view: owner {
-  sql_table_name: hubspot_grow.owner ;;
+  sql_table_name: hubspotgw.owner ;;
   drill_fields: [owner_id]
 
   dimension: owner_id {
