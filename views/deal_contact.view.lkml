@@ -1,7 +1,7 @@
 # All fields are hidden - no fields are needed for explores
 
 view: deal_contact {
-  sql_table_name: hubspotgw.deal_contact ;;
+  sql_table_name: hubspot_gw_teste.deal_contact ;;
 
   dimension_group: _fivetran_synced {
     hidden: yes

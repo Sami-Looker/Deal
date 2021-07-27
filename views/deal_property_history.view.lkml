@@ -1,7 +1,7 @@
 # All the dimensions in this view are hidden
 
 view: deal_property_history {
-  sql_table_name: hubspotgw.deal_property_history ;;
+  sql_table_name: hubspot_gw_teste.deal_property_history ;;
 
   dimension_group: _fivetran_synced {
     hidden: yes
